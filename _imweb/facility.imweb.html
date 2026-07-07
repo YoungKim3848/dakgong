@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>닥공캠프 시설</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <style>
+    @font-face { font-family: 'Paperlogy'; font-weight: 700; src: url('fonts/Paperlogy-7Bold.ttf') format('truetype'); }
+    @font-face { font-family: 'Paperlogy'; font-weight: 800; src: url('fonts/Paperlogy-8ExtraBold.ttf') format('truetype'); }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'PretendardVariable','Pretendard',-apple-system,sans-serif;
+      color: #1a1a1a;
+      background: #f0f0f0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── 섹션 공통 ── */
+    .dk-sec {
+      padding: clamp(52px, 7vw, 88px) clamp(16px, 5vw, 56px);
+      word-break: keep-all;
+    }
+    .dk-sec--white  { background: #fff; }
+    .dk-sec--gray   { background: #f5f5f5; }
+    .dk-sec--dark   { background: #242424; }
+
+    /* ── 섹션 헤더 ── */
+    .dk-hd {
+      max-width: 1280px;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .dk-hd-num {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: #ab0000;
+      flex-shrink: 0;
+    }
+    .dk-hd-name {
+      font-family: 'Paperlogy', 'PretendardVariable', 'Pretendard', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.25;
+      flex-shrink: 0;
+    }
+    .dk-sec--dark .dk-hd-name { color: #fff; }
+    .dk-hd-rule { flex: 1; height: 1px; background: #e0e0e0; }
+    .dk-sec--dark .dk-hd-rule { background: #3a3a3a; }
+
+    /* ══════════════════════════════
+       00 개요(요약) — 필리핀 캠프 위치·시설
+    ══════════════════════════════ */
+    .dk-ov { max-width: 1280px; margin: 0 auto; }
+    .dk-ov-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px 48px;
+      margin-bottom: 40px;
+    }
+    .dk-ov-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      color: #ab0000;
+      margin-bottom: 14px;
+    }
+    .dk-ov-title {
+      font-family: 'Paperlogy', 'PretendardVariable', 'Pretendard', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.5px;
+      color: #1a1a1a;
+    }
+    .dk-ov-title em { color: #ab0000; font-style: normal; }
+    .dk-ov-sub {
+      max-width: 480px;
+      font-size: 15px;
+      line-height: 1.78;
+      color: #666;
+    }
+    .dk-ov-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #e4e4e4;
+      border: 1px solid #e4e4e4;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .dk-ov-grid { grid-template-columns: 1fr; }
+    }
+    .dk-ov-item {
+      background: #fff;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .dk-ov-k {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #999;
+    }
+    .dk-ov-v {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #1a1a1a;
+    }
+    .dk-ov-note { font-size: 13px; line-height: 1.5; color: #9a9a9a; }
+
+    /* 진입 애니메이션 (기존 패턴과 통일) */
+    .dk-ov-head, .dk-ov-item {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s cubic-bezier(0.2,0.7,0.2,1),
+                  transform 0.5s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dk-ov-head, .dk-ov-item { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ══════════════════════════════
+       A안 벤토 그리드 — 4장 + MORE
+    ══════════════════════════════ */
+    .dk-bento {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: 260px 200px;
+      gap: 8px;
+    }
+    /* 사진 슬롯 */
+    .dk-b {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: #ddd;
+    }
+    .dk-sec--dark .dk-b { background: #383838; }
+
+    .dk-b img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .dk-b:hover img { transform: scale(1.04); }
+
+    /* 빈 슬롯 레이블 — 비활성화 */
+    .dk-b[data-label]::before { content: none; }
+
+    /* 빈 슬롯 힌트 */
+    .dk-b.is-empty::after {
+      content: '📷 클릭하여 이미지 추가';
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+      color: #aaa;
+      pointer-events: none;
+    }
+    .dk-sec--dark .dk-b.is-empty::after { color: #555; }
+
+    /* 업로드 버튼 */
+    .dk-b-upload {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 10;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: opacity 0.18s, background 0.18s;
+    }
+    .dk-b:hover .dk-b-upload { opacity: 1; }
+    .dk-b.is-empty .dk-b-upload { opacity: 0.75; }
+    .dk-b-upload:hover { background: rgba(171, 0, 0, 0.9) !important; }
+
+    /* 그리드 위치 */
+    .dk-b.bm   { grid-column: 1; grid-row: 1 / 3; }
+    .dk-b.b1   { grid-column: 2; grid-row: 1; }
+    .dk-b.b2   { grid-column: 3; grid-row: 1; }
+    .dk-b.b3   { grid-column: 2; grid-row: 2; }
+
+    /* MORE 버튼 */
+    .dk-b-more {
+      grid-column: 3;
+      grid-row: 2;
+      border-radius: 10px;
+      background: #1a1a1a;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+      padding: 0;
+      font-family: inherit;
+    }
+    .dk-b-more:hover { background: #ab0000; }
+    .dk-sec--dark .dk-b-more { background: #383838; }
+    .dk-sec--dark .dk-b-more:hover { background: #ab0000; }
+
+    .dk-more-count {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .dk-more-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── 불렛 캡션 ── */
+    .dk-bullets {
+      max-width: 1280px;
+      margin: 20px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+    .dk-bullet {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: #4a4a4a;
+    }
+    .dk-sec--dark .dk-bullet { color: #888; }
+    .dk-bullet::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ab0000;
+      flex-shrink: 0;
+    }
+
+    /* ── 스탯 바 ── */
+    .dk-stats {
+      background: #1a1a1a;
+      padding: clamp(40px, 6vw, 64px) clamp(16px, 5vw, 48px);
+    }
+    .dk-stats-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px 16px;
+      text-align: center;
+    }
+    .dk-snum {
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .dk-snum em { color: #ab0000; font-style: normal; }
+    .dk-slbl { font-size: clamp(11px, 2.5vw, 13px); color: #666; margin-top: 8px; }
+
+    /* ══════════════════════════════
+       사이드 플로팅 nav — 데스크탑 전용
+    ══════════════════════════════ */
+    .dk-sidenav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-end;
+    }
+    .dk-sn-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dk-sn-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 5px 11px;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.18s, transform 0.18s;
+      pointer-events: none;
+    }
+    .dk-sn-item:hover .dk-sn-label,
+    .dk-sn-item.is-active .dk-sn-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .dk-sn-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ccc;
+      border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 0 0 1.5px #ccc;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .dk-sn-item.is-active .dk-sn-dot {
+      background: #ab0000;
+      box-shadow: 0 0 0 1.5px #ab0000;
+      width: 11px;
+      height: 11px;
+    }
+    .dk-sn-item:hover .dk-sn-dot {
+      background: #888;
+      box-shadow: 0 0 0 1.5px #888;
+    }
+    @media (max-width: 900px) { .dk-sidenav { display: none !important; } }
+
+    /* ══════════════════════════════
+       갤러리 라이트박스
+    ══════════════════════════════ */
+    .dk-gallery {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.94);
+      flex-direction: column;
+    }
+    .dk-gallery.is-open { display: flex; }
+
+    .dk-gal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      flex-shrink: 0;
+    }
+    .dk-gal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .dk-gal-counter {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-variant-numeric: tabular-nums;
+      margin: 0 auto 0 16px;
+    }
+    .dk-gal-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background 0.18s;
+      flex-shrink: 0;
+    }
+    .dk-gal-close:hover { background: #ab0000; }
+
+    .dk-gal-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 16px;
+      min-height: 0;
+    }
+    .dk-gal-nav {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: background 0.18s;
+    }
+    .dk-gal-nav:hover { background: #ab0000; }
+    .dk-gal-nav:disabled { opacity: 0.2; cursor: default; }
+    .dk-gal-nav:disabled:hover { background: rgba(255,255,255,0.1); }
+
+    .dk-gal-img-wrap {
+      flex: 1;
+      max-width: 960px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dk-gal-img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .dk-gal-placeholder {
+      width: 100%;
+      max-height: 520px;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      background: #2a2a2a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #555;
+      font-size: 14px;
+    }
+    .dk-gal-placeholder .ph-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: #444;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 썸네일 스트립 */
+    .dk-gal-thumbs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 24px 18px;
+      overflow-x: auto;
+      flex-shrink: 0;
+      scrollbar-width: thin;
+      scrollbar-color: #333 transparent;
+    }
+    .dk-gal-thumbs::-webkit-scrollbar { height: 4px; }
+    .dk-gal-thumbs::-webkit-scrollbar-track { background: transparent; }
+    .dk-gal-thumbs::-webkit-scrollbar-thumb { background: #444; border-radius: 2px; }
+
+    .dk-gal-thumb {
+      width: 56px;
+      height: 40px;
+      border-radius: 5px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+    .dk-gal-thumb.is-active { border-color: #ab0000; }
+    .dk-gal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ══════════════════════════════
+       스크롤 애니메이션
+    ══════════════════════════════ */
+    .dk-hd, .dk-bullets {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s cubic-bezier(0.2,0.7,0.2,1),
+                  transform 0.5s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .dk-b {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+      transition: opacity 0.55s cubic-bezier(0.2,0.7,0.2,1),
+                  transform 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .dk-b-more {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+      transition: opacity 0.55s cubic-bezier(0.2,0.7,0.2,1),
+                  transform 0.55s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .dk-stats-inner > div {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s cubic-bezier(0.2,0.7,0.2,1),
+                  transform 0.5s cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .anim-in { opacity: 1 !important; transform: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dk-hd, .dk-bullets, .dk-b, .dk-b-more, .dk-stats-inner > div {
+        opacity: 1; transform: none; transition: none;
+      }
+    }
+
+    /* ══════════════════════════════
+       모바일 반응형
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+      .dk-bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 56vw 36vw 36vw;
+        gap: 6px;
+      }
+      .dk-b.bm   { grid-column: 1 / 3; grid-row: 1; }
+      .dk-b.b1   { grid-column: 1; grid-row: 2; }
+      .dk-b.b2   { grid-column: 2; grid-row: 2; }
+      .dk-b.b3   { grid-column: 1; grid-row: 3; }
+      .dk-b-more { grid-column: 2; grid-row: 3; }
+      .dk-more-count { font-size: 22px; }
+      .dk-more-label { font-size: 10px; }
+      /* 모바일 갤러리 — 이미지를 좌우 꽉 채우고, 버튼은 이미지 위 오버레이 */
+      .dk-gal-stage { position: relative; padding: 0 6px; gap: 0; }
+      .dk-gal-img-wrap { max-width: none; }
+      .dk-gal-img { border-radius: 10px; }
+      .dk-gal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 6;
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+        background: rgba(0,0,0,0.42);
+        backdrop-filter: blur(3px);
+      }
+      #gal-prev { left: 8px; }
+      #gal-next { right: 8px; }
+      .dk-gal-nav:disabled { opacity: 0; pointer-events: none; }
+    }
+    @media (max-width: 480px) {
+      .dk-bento {
+        grid-template-rows: 52vw 34vw 34vw;
+      }
+    }
+
+    /* 스탯 바 — 모바일: 폰트 줄여서 3개 한 줄 유지 */
+    @media (max-width: 600px) {
+      .dk-snum {
+        font-size: clamp(20px, 5.5vw, 26px);
+        white-space: nowrap;
+      }
+      .dk-slbl {
+        font-size: 11px;
+      }
+      .dk-stats {
+        padding: 32px 16px;
+      }
+      .dk-stats-inner {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 갤러리 라이트박스 -->
+<div class="dk-gallery" id="dk-gallery" role="dialog" aria-modal="true">
+  <div class="dk-gal-header">
+    <div class="dk-gal-title" id="gal-title">캠프 전경</div>
+    <div class="dk-gal-counter"><span id="gal-cur">1</span> / <span id="gal-total">23</span></div>
+    <button class="dk-gal-close" id="gal-close" aria-label="닫기">✕</button>
+  </div>
+  <div class="dk-gal-stage">
+    <button class="dk-gal-nav" id="gal-prev" aria-label="이전">‹</button>
+    <div class="dk-gal-img-wrap" id="gal-img-wrap">
+      <div class="dk-gal-placeholder"><div class="ph-num" id="gal-ph-num">1</div><div>사진을 추가해주세요</div></div>
+    </div>
+    <button class="dk-gal-nav" id="gal-next" aria-label="다음">›</button>
+  </div>
+  <div class="dk-gal-thumbs" id="gal-thumbs"></div>
+</div>
+
+<!-- 사이드 플로팅 nav -->
+<nav class="dk-sidenav" aria-label="시설 섹션">
+  <a class="dk-sn-item" href="#sec-00"><span class="dk-sn-label">00 개요</span><span class="dk-sn-dot"></span></a>
+  <a class="dk-sn-item" href="#sec-01"><span class="dk-sn-label">01 캠프전경</span><span class="dk-sn-dot"></span></a>
+  <a class="dk-sn-item" href="#sec-02"><span class="dk-sn-label">02 강의동</span><span class="dk-sn-dot"></span></a>
+  <a class="dk-sn-item" href="#sec-03"><span class="dk-sn-label">03 사무실</span><span class="dk-sn-dot"></span></a>
+  <a class="dk-sn-item" href="#sec-04"><span class="dk-sn-label">04 기숙사</span><span class="dk-sn-dot"></span></a>
+  <a class="dk-sn-item" href="#sec-05"><span class="dk-sn-label">05 식당</span><span class="dk-sn-dot"></span></a>
+</nav>
+
+<!-- ══════════════════════════
+     00 개요 — 필리핀 캠프 위치 및 시설
+══════════════════════════ -->
+<section class="dk-sec dk-sec--gray" id="sec-00">
+  <div class="dk-ov">
+    <div class="dk-ov-head">
+      <div>
+        <span class="dk-ov-label">LOCATION &amp; FACILITY</span>
+        <h2 class="dk-ov-title">필리핀 클락 · 앙헬레스<br><em>5,000평</em> 독립 캠프</h2>
+      </div>
+      <p class="dk-ov-sub">필리핀 교육부(TESDA) 인증 전문 교육기관이자
+        <br>SSP(어학연수 허가증) 발급 어학원인 SDI 어학원에서 운영됩니다.
+        <br>한인타운과 차로 10분 거리의 독립 빌리지로,<br>공식 일정 외 외부 출입이 통제됩니다.</p>
+    </div>
+    <div class="dk-ov-grid">
+      <div class="dk-ov-item">
+        <span class="dk-ov-k">위치 · 장소</span>
+        <span class="dk-ov-v">SDI 어학원</span>
+        <span class="dk-ov-note">필리핀 클락 · 앙헬레스 · 한인타운 차로 10분</span>
+      </div>
+      <div class="dk-ov-item">
+        <span class="dk-ov-k">규모</span>
+        <span class="dk-ov-v">대지 약 5,000평</span>
+        <span class="dk-ov-note">건평 약 3,000평</span>
+      </div>
+      <div class="dk-ov-item">
+        <span class="dk-ov-k">수용 인원</span>
+        <span class="dk-ov-v">약 200명</span>
+        <span class="dk-ov-note">기숙형 운영</span>
+      </div>
+      <div class="dk-ov-item">
+        <span class="dk-ov-k">기관 인증</span>
+        <span class="dk-ov-v">TESDA 인증 교육기관</span>
+        <span class="dk-ov-note">SSP 발급 어학원</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 스탯 바 -->
+<div class="dk-stats">
+  <div class="dk-stats-inner">
+    <div>
+      <div class="dk-snum"><em>5,000</em>평</div>
+      <div class="dk-slbl">전용 시설 규모</div>
+    </div>
+    <div>
+      <div class="dk-snum"><em>20</em>년+</div>
+      <div class="dk-slbl">운영 연수</div>
+    </div>
+    <div>
+      <div class="dk-snum"><em>5,000</em>명+</div>
+      <div class="dk-slbl">누적 참가생</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════
+     01 캠프 전경
+══════════════════════════ -->
+<section class="dk-sec dk-sec--white" id="sec-01">
+  <div class="dk-hd">
+    <span class="dk-hd-num">01</span>
+    <span class="dk-hd-name">캠프 전경</span>
+    <div class="dk-hd-rule"></div>
+  </div>
+  <div class="dk-bento" data-section="sec-01" data-label="캠프 전경" data-total="26"
+    data-base="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/camp/"
+    data-files='["DSC02433_content.webp","DSC02442_content.webp","DSC02495_content.webp","DSC02547_content.webp","DSC02562_content.webp","DSC02565_content.webp","DSC02600_content.webp","DSC02635_content.webp","DSC02636_content.webp","DSC02640_content.webp","DSC02658_content.webp","DSC02661_content.webp","DSC02701_content.webp","DSC02762_content.webp","DSC02772_content.webp","DSC02783_content.webp","DSC02800_content.webp","DSC02812_content.webp","DSC02924_content.webp","DSC02926_content.webp","DSC03029_content.webp","DSC03096_content.webp","DSC03102_content.webp","DSC03136_content.webp","DSC03150_content.webp","DSC03160_content.webp"]'>
+    <div class="dk-b bm" data-label="캠프 전경" data-idx="0"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/camp/DSC02433_content.webp" alt="캠프 전경 메인"></div>
+    <div class="dk-b b1" data-label="캠프 전경" data-idx="1"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/camp/DSC03150_content.webp" alt="캠프 전경"></div>
+    <div class="dk-b b2" data-label="캠프 전경" data-idx="2"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/camp/DSC02661_content.webp" alt="캠프 전경"></div>
+    <div class="dk-b b3" data-label="캠프 전경" data-idx="3"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/camp/DSC02547_content.webp" alt="캠프 전경"></div>
+    <button class="dk-b-more" data-open="sec-01">
+      <div class="dk-more-count">26장</div>
+      <div class="dk-more-label">전체 보기 +</div>
+    </button>
+  </div>
+  <div class="dk-bullets">
+    <span class="dk-bullet">대지 5,000평 독립 빌리지</span>
+    <span class="dk-bullet">수영장 · 운동장</span>
+    <span class="dk-bullet">외부 출입 통제 구역</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     02 강의동
+══════════════════════════ -->
+<section class="dk-sec dk-sec--gray" id="sec-02">
+  <div class="dk-hd">
+    <span class="dk-hd-num">02</span>
+    <span class="dk-hd-name">강의동</span>
+    <div class="dk-hd-rule"></div>
+  </div>
+  <div class="dk-bento" data-section="sec-02" data-label="강의동" data-total="19"
+    data-base="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/class_rooom/"
+    data-files='["DSC02455_content.webp","DSC02463_content.webp","DSC02464_content.webp","DSC02820_content.webp","DSC02842_content.webp","DSC02849_content.webp","DSC02860_content.webp","DSC02862_content.webp","DSC02873_content.webp","DSC02877_content.webp","DSC02897_content.webp","DSC02898_content.webp","DSC02912_content.webp","DSC02951_content.webp","DSC02952_content.webp","DSC02954_content.webp","DSC02959_content.webp","DSC02967_content.webp","DSC02970_content.webp"]'>
+    <div class="dk-b bm" data-label="강의실 전경" data-idx="0"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/class_rooom/DSC02455_content.webp" alt="강의실 전경"></div>
+    <div class="dk-b b1" data-label="강의실" data-idx="1"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/class_rooom/DSC02820_content.webp" alt="강의실"></div>
+    <div class="dk-b b2" data-label="자습실 전경" data-idx="2"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/class_rooom/DSC02898_content.webp" alt="자습실 전경"></div>
+    <div class="dk-b b3" data-label="자습실" data-idx="3"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/class_rooom/DSC02970_content.webp" alt="자습실"></div>
+    <button class="dk-b-more" data-open="sec-02">
+      <div class="dk-more-count">19장</div>
+      <div class="dk-more-label">전체 보기 +</div>
+    </button>
+  </div>
+  <div class="dk-bullets">
+    <span class="dk-bullet">1대1 수업</span>
+    <span class="dk-bullet">SMALL GROUP</span>
+    <span class="dk-bullet">BIG GROUP</span>
+    <span class="dk-bullet">자습실</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     03 사무실
+══════════════════════════ -->
+<section class="dk-sec dk-sec--white" id="sec-03">
+  <div class="dk-hd">
+    <span class="dk-hd-num">03</span>
+    <span class="dk-hd-name">사무실</span>
+    <div class="dk-hd-rule"></div>
+  </div>
+  <div class="dk-bento" data-section="sec-03" data-label="사무실" data-total="6"
+    data-base="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/office/"
+    data-files='["DSC02453_content.webp","DSC02727_content.webp","DSC02729_content.webp","DSC02744_content.webp","DSC02755_content.webp","%EC%96%91%ED%98%B8%EC%8B%A4.webp"]'>
+    <div class="dk-b bm" data-label="사무실 전경" data-idx="0"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/office/DSC02755_content.webp" alt="사무실 전경"></div>
+    <div class="dk-b b1" data-label="사무실" data-idx="1"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/office/DSC02744_content.webp" alt="사무실"></div>
+    <div class="dk-b b2" data-label="양호실" data-idx="2"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/office/%EC%96%91%ED%98%B8%EC%8B%A4.webp" alt="양호실"></div>
+    <div class="dk-b b3" data-label="사무실" data-idx="3"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/office/DSC02729_content.webp" alt="사무실"></div>
+    <button class="dk-b-more" data-open="sec-03">
+      <div class="dk-more-count">6장</div>
+      <div class="dk-more-label">전체 보기 +</div>
+    </button>
+  </div>
+  <div class="dk-bullets">
+    <span class="dk-bullet">전담 운영팀 상주</span>
+    <span class="dk-bullet">양호실 운영</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     04 기숙사
+══════════════════════════ -->
+<section class="dk-sec dk-sec--gray" id="sec-04">
+  <div class="dk-hd">
+    <span class="dk-hd-num">04</span>
+    <span class="dk-hd-name">기숙사</span>
+    <div class="dk-hd-rule"></div>
+  </div>
+  <div class="dk-bento" data-section="sec-04" data-label="기숙사" data-total="12"
+    data-base="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/rooms/"
+    data-files='["DSC03038_content.webp","DSC03039_content.webp","DSC03041_content.webp","DSC03043_content.webp","DSC03046_content.webp","DSC03050_content.webp","DSC03052_content.webp","DSC03117_content.webp","DSC03122_content.webp","DSC03129_content.webp","DSC03130_content.webp","DSC03135_content.webp"]'>
+    <div class="dk-b bm" data-label="기숙사 전경" data-idx="0"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/rooms/DSC03117_content.webp" alt="기숙사 전경"></div>
+    <div class="dk-b b1" data-label="기숙사 룸" data-idx="1"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/rooms/DSC03046_content.webp" alt="기숙사 룸"></div>
+    <div class="dk-b b2" data-label="기숙사" data-idx="2"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/rooms/DSC03038_content.webp" alt="기숙사"></div>
+    <div class="dk-b b3" data-label="기숙사" data-idx="3"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/rooms/DSC03129_content.webp" alt="기숙사"></div>
+    <button class="dk-b-more" data-open="sec-04">
+      <div class="dk-more-count">12장</div>
+      <div class="dk-more-label">전체 보기 +</div>
+    </button>
+  </div>
+  <div class="dk-bullets">
+    <span class="dk-bullet">4인 1실</span>
+    <span class="dk-bullet">원어민 교사 24시간 상주</span>
+    <span class="dk-bullet">CCTV · 시큐리티 가드</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     05 식당
+══════════════════════════ -->
+<section class="dk-sec dk-sec--white" id="sec-05">
+  <div class="dk-hd">
+    <span class="dk-hd-num">05</span>
+    <span class="dk-hd-name">식당</span>
+    <div class="dk-hd-rule"></div>
+  </div>
+  <div class="dk-bento" data-section="sec-05" data-label="식당" data-total="6"
+    data-base="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/restaurant/"
+    data-files='["DSC02531_content.webp","DSC02540_content.webp","DSC02573_content.webp","DSC03000_content.webp","DSC03011_content.webp","DSC03012_content.webp"]'>
+    <div class="dk-b bm" data-label="식당 전경" data-idx="0"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/restaurant/DSC03000_content.webp" alt="식당 전경"></div>
+    <div class="dk-b b1" data-label="식당" data-idx="1"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/restaurant/DSC02573_content.webp" alt="식당"></div>
+    <div class="dk-b b2" data-label="식당" data-idx="2"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/restaurant/DSC02531_content.webp" alt="식당"></div>
+    <div class="dk-b b3" data-label="식당" data-idx="3"><img src="https://raw.githubusercontent.com/YoungKim3848/dakgong/main/content/restaurant/DSC03012_content.webp" alt="식당"></div>
+    <button class="dk-b-more" data-open="sec-05">
+      <div class="dk-more-count">6장</div>
+      <div class="dk-more-label">전체 보기 +</div>
+    </button>
+  </div>
+  <div class="dk-bullets">
+    <span class="dk-bullet">한식 위주 균형 식단</span>
+    <span class="dk-bullet">간식 제공</span>
+  </div>
+</section>
+
+
+<!-- ═══ 생활환경(식단) — food.imweb.html 병합. 시설 파트 유지, 음식 파트는 트림 예정. .dk-core 스코프라 .dk-sec와 충돌 없음 ═══ -->
+<div class="dk-core">
+<style>
+  .dk-core,.dk-core *{word-break:keep-all;box-sizing:border-box;}
+  .dk-core{font-family:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;color:#1a1a1a;-webkit-font-smoothing:antialiased;}
+  .dk-core h1,.dk-core h2,.dk-core h3{font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;}
+
+  @keyframes dk-tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ── 공통 내부 컨테이너 ── */
+  .dk-fi { max-width:1280px; margin:0 auto; padding:0; }   /* facility(.dk-hd 1280)와 폭 정합 */
+
+  /* ── split-header (헤드라인 + 서브텍스트 좌우 배치) ── */
+  .dk-sh { display:flex; justify-content:space-between; align-items:flex-end; gap:clamp(24px,4vw,48px); flex-wrap:wrap; margin-bottom:clamp(32px,5vw,64px); }
+  .dk-sh h2 { font-size:clamp(24px,3.5vw,36px); font-weight:700; line-height:1.25; margin:0; letter-spacing:normal; flex-shrink:0; }
+  .dk-sh p  { font-size:clamp(15px,1.6vw,18px); color:#555; line-height:1.75; margin:0; max-width:clamp(200px,28vw,320px); text-align:right; text-wrap:pretty; }
+
+  /* 모바일: split-header 완전 세로 전환 */
+  @media(max-width:640px){
+    .dk-sh { flex-direction:column; align-items:flex-start; }
+    .dk-sh p { text-align:left; max-width:100%; }
+    .dk-core section { padding-top:56px!important; padding-bottom:56px!important; }
+  }
+
+  /* ── stat row (3 박스) ── */
+  .dk-stat-row { display:flex; gap:16px; flex-wrap:wrap; }
+  .dk-stat-box { flex:1 1 200px; }
+
+  /* ── 3-col 카드 그리드 ── */
+  .dk-g3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+
+  /* ── 재료 6-col 그리드 ── */
+  .dk-ingr { display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:12px; margin-bottom:40px; }
+
+  /* ── 2-col 좌우 그리드 ── */
+  .dk-g2    { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+  /* 당근/채찍 섹션 5:7 비율 (넓을 때만) */
+  @media(min-width:640px){
+    .dk-g2-asym { grid-template-columns:5fr 7fr; }
+  }
+
+  /* ── 컵라면 스텝 그리드 ── */
+  .dk-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; }
+
+  /* ── CTA 요약 3열 ── */
+  .dk-cta3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1px; background:#444; border-radius:16px; overflow:hidden; }
+</style>
+
+
+
+<!-- ══ SECTION 1 — 히어로 (다크) ══ -->
+<section style="background:#2a2a2a;padding:96px clamp(16px,5vw,56px) 80px;">
+  <div class="dk-fi">
+
+    <p style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 16px;">식단 이야기</p>
+
+    <div class="dk-sh" style="margin-bottom:clamp(32px,5vw,64px);">
+      <h2 class="dk-sh" style="font-size:clamp(26px,3.8vw,42px);font-weight:700;color:#fff;line-height:1.2;margin:0;flex-shrink:0;display:block;">
+        4주 동안 아이가<br>먹는 <span style="color:#ab0000;">84끼</span>
+      </h2>
+      <p style="font-size:clamp(14px,1.6vw,18px);color:#aaa;margin:0;max-width:clamp(180px,28vw,320px);text-align:right;line-height:1.7;">
+        엄마는 원산지부터 조리 방식까지<br>꼼꼼히 확인하는 게 본능입니다.
+      </p>
+    </div>
+
+    <div class="dk-stat-row">
+      <div class="dk-stat-box" style="background:#1a1a1a;border-radius:16px;padding:32px 28px;">
+        <div style="font-size:11px;font-weight:700;color:#ab0000;letter-spacing:2px;margin-bottom:16px;">DAILY</div>
+        <div style="font-size:clamp(36px,5vw,48px);font-weight:800;color:#fff;line-height:1;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;">3끼</div>
+        <div style="font-size:14px;color:#757575;line-height:1.6;">아침 · 점심 · 저녁<br>모두 한식 위주</div>
+      </div>
+      <div class="dk-stat-box" style="background:#1a1a1a;border-radius:16px;padding:32px 28px;">
+        <div style="font-size:11px;font-weight:700;color:#ab0000;letter-spacing:2px;margin-bottom:16px;">PER WEEK</div>
+        <div style="font-size:clamp(36px,5vw,48px);font-weight:800;color:#fff;line-height:1;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;">21끼</div>
+        <div style="font-size:14px;color:#757575;line-height:1.6;">주 6일 영어 수업,<br>식단도 6일 풀 운영</div>
+      </div>
+      <div class="dk-stat-box" style="background:#333;border:2px solid #ab0000;border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;right:0;background:#ab0000;font-size:11px;font-weight:700;color:#fff;letter-spacing:1.5px;padding:6px 14px;border-radius:0 16px 0 12px;">4주 기준</div>
+        <div style="font-size:11px;font-weight:700;color:#ab0000;letter-spacing:2px;margin-bottom:16px;">TOTAL</div>
+        <div style="font-size:clamp(36px,5vw,48px);font-weight:800;color:#fff;line-height:1;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;">84끼</div>
+        <div style="font-size:14px;color:#aaa;line-height:1.6;">집 앞 식당 가듯,<br>좋은 재료 좋은 밥상</div>
+      </div>
+    </div>
+
+    <!-- 식단 자동 슬라이드(마퀴) -->
+    <style>
+    .dk-mn-marquee{margin-top:clamp(36px,5vw,60px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);}
+    .dk-mn-track{display:flex;gap:16px;width:max-content;animation:dk-mn-scroll 55s linear infinite;}
+    .dk-mn-marquee:hover .dk-mn-track{animation-play-state:paused;}
+    .dk-mn-track img{height:clamp(170px,20vw,240px);aspect-ratio:4/3;width:auto;object-fit:cover;border-radius:14px;display:block;flex:0 0 auto;}
+    @keyframes dk-mn-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media (prefers-reduced-motion:reduce){.dk-mn-track{animation:none}}
+    </style>
+    <div class="dk-mn-marquee"><div class="dk-mn-track"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu1.webp" alt="닥공캠프 식단 1"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu2.webp" alt="닥공캠프 식단 2"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu3.webp" alt="닥공캠프 식단 3"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu4.webp" alt="닥공캠프 식단 4"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu5.webp" alt="닥공캠프 식단 5"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu6.webp" alt="닥공캠프 식단 6"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu7.webp" alt="닥공캠프 식단 7"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu8.webp" alt="닥공캠프 식단 8"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu9.webp" alt="닥공캠프 식단 9"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu10.webp" alt="닥공캠프 식단 10"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu11.webp" alt="닥공캠프 식단 11"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu12.webp" alt="닥공캠프 식단 12"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu13.webp" alt="닥공캠프 식단 13"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu1.webp" alt="닥공캠프 식단 1"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu2.webp" alt="닥공캠프 식단 2"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu3.webp" alt="닥공캠프 식단 3"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu4.webp" alt="닥공캠프 식단 4"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu5.webp" alt="닥공캠프 식단 5"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu6.webp" alt="닥공캠프 식단 6"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu7.webp" alt="닥공캠프 식단 7"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu8.webp" alt="닥공캠프 식단 8"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu9.webp" alt="닥공캠프 식단 9"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu10.webp" alt="닥공캠프 식단 10"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu11.webp" alt="닥공캠프 식단 11"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu12.webp" alt="닥공캠프 식단 12"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/food/menu13.webp" alt="닥공캠프 식단 13"></div></div>
+
+
+  </div>
+</section>
+
+<!-- ══ SECTION 3 — 직배송 식재료 (연회색) ══ -->
+<section style="background:#f5f5f5;padding:96px clamp(16px,5vw,56px);">
+  <div class="dk-fi">
+
+    <p style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">국내산 직배송</p>
+    <div class="dk-sh">
+      <h2 style="color:#1a1a1a;">합천 친정집에서<br><span style="color:#ab0000;">직접 날아옵니다</span></h2>
+      <p>닥공은 좋은 재료만 고집하기에<br>식자재도 한국에서 필리핀으로<br>함께 날아갑니다.</p>
+    </div>
+
+    <div class="dk-ingr">
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.66 3.13 3 7 3s7-1.34 7-3V5"/><path d="M5 11v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">참기름</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">국내산</div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><path d="M12 2C8.5 2 6 4.5 6 7c0 2 1 3.5 2.5 4.5L7 20h10l-1.5-8.5C17 10.5 18 9 18 7c0-2.5-2.5-5-6-5z"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">버섯</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">국내산</div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">깨소금</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">국내산</div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><path d="M7 20V8c0-2.8 2.2-5 5-5s5 2.2 5 5v12"/><path d="M5 20h14"/><path d="M7 12h10"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">배추</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">합천 직접 재배</div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">고춧가루</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">합천 직접 재배</div>
+      </div>
+      <div style="background:#fff;border-radius:12px;padding:20px 12px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px;"><path d="M12 2C9 2 7 4 7 7c0 2 1 3.5 2 4.5V18h6v-6.5C16 10.5 17 9 17 7c0-3-2-5-5-5z"/><path d="M9 18h6"/></svg>
+        <div style="font-size:14px;font-weight:700;color:#1a1a1a;">마늘</div>
+        <div style="font-size:11px;color:#aaa;margin-top:2px;">합천 직접 재배</div>
+      </div>
+    </div>
+
+    <div class="dk-g2">
+      <div style="background:#fff;border-radius:16px;padding:36px 32px;">
+        <div style="font-size:13px;font-weight:700;color:#ab0000;letter-spacing:1.5px;margin-bottom:16px;">KIMCHI MAKING</div>
+        <div style="font-size:22px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:16px;">직접 김장하는<br>영어캠프</div>
+        <div style="font-size:15px;color:#555;line-height:1.75;margin-bottom:24px;">매 캠프마다 힘들어도 직접 합니다. 대표님의 말씀, <em>"김치찌개·김치볶음밥·부대찌개… 일단은 김치가 맛있어야 한다!"</em></div>
+        <div style="font-size:15px;color:#aaa;border-top:1px solid #f0f0f0;padding-top:16px;">캠프마다 직접 담그는 김치. 필리핀에서 먹는 한국 김장.</div>
+      </div>
+      <div style="background:#1a1a1a;border-radius:16px;padding:36px 32px;">
+        <div style="font-size:13px;font-weight:700;color:#ab0000;letter-spacing:1.5px;margin-bottom:16px;">ORIGIN</div>
+        <div style="font-size:22px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:16px;">친정어머님이<br>직접 고른 재료</div>
+        <div style="font-size:15px;color:#757575;line-height:1.75;">합천 대표님 친정집에서 직접 농사지으신 재료들. <span style="color:#aaa;">"내 딸과 아이들 입에 들어갈 좋은 놈들만 골라서 주신답니다."</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SECTION 5 — 생활환경 요약 (다크) ══ -->
+<section style="background:#2a2a2a;padding:96px clamp(16px,5vw,56px) 80px;">
+  <div class="dk-fi" style="text-align:center;">
+
+    <p style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 20px;">생활환경</p>
+    <h2 style="font-size:clamp(26px,3.8vw,42px);font-weight:700;color:#fff;line-height:1.3;margin:0 0 24px;">
+      먹고 자는 생활까지,<br><span style="color:#ab0000;">한국처럼 챙깁니다.</span>
+    </h2>
+    <p style="font-size:clamp(15px,1.6vw,18px);color:#aaa;margin:0 auto 56px;line-height:1.8;max-width:520px;">
+      전용 캠퍼스에서 지내는 동안 한식 식단부터 기숙 생활까지 — 낯선 해외에서도 아이가 익숙하고 든든하게 지낼 수 있는 환경을 만듭니다.
+    </p>
+
+    <div class="dk-cta3">
+      <div style="background:#1a1a1a;padding:32px 24px;text-align:center;">
+        <div style="font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;">한식 <span style="color:#ab0000;">3끼</span></div>
+        <div style="font-size:15px;color:#757575;">매일 철저히 한식 위주</div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px 24px;text-align:center;">
+        <div style="font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;"><span style="color:#ab0000;">전용</span> 캠퍼스</div>
+        <div style="font-size:15px;color:#757575;">학습·식사·생활 한 공간에서</div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px 24px;text-align:center;">
+        <div style="font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;font-family:'Paperlogy','Pretendard Variable',sans-serif;margin-bottom:8px;"><span style="color:#ab0000;">국내산</span> 직배송</div>
+        <div style="font-size:15px;color:#757575;">합천 친정집 직접 농사 재료</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+<script>
+(function() {
+
+  /* ─────────────────────────────────
+     이미지 업로드 (파일 → Data URL)
+  ───────────────────────────────── */
+  var fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.style.cssText = 'position:fixed;left:-9999px;opacity:0;';
+  document.body.appendChild(fileInput);
+  var uploadTarget = null;
+
+  document.querySelectorAll('.dk-b').forEach(function(box) {
+    var img = box.querySelector('img');
+
+    // 업로드 버튼 생성
+    var btn = document.createElement('button');
+    btn.className = 'dk-b-upload';
+    btn.innerHTML = '📷';
+    btn.title = '이미지 변경';
+    btn.setAttribute('aria-label', '이미지 업로드');
+    box.appendChild(btn);
+
+    // 빈 상태 감지
+    function checkEmpty() {
+      box.classList.toggle('is-empty', !img || img.naturalWidth === 0);
+    }
+    if (img) {
+      img.addEventListener('load',  function() { box.classList.remove('is-empty'); });
+      img.addEventListener('error', function() { box.classList.add('is-empty');    });
+      if (img.complete) { checkEmpty(); } else { setTimeout(checkEmpty, 300); }
+    } else {
+      box.classList.add('is-empty');
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      uploadTarget = box;
+      fileInput.value = '';
+      fileInput.click();
+    });
+  });
+
+  fileInput.addEventListener('change', function() {
+    var file = fileInput.files[0];
+    if (!file || !uploadTarget) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      var img = uploadTarget.querySelector('img');
+      if (!img) { img = document.createElement('img'); uploadTarget.appendChild(img); }
+      img.src = ev.target.result;
+      img.alt = uploadTarget.getAttribute('data-label') || '';
+      uploadTarget.classList.remove('is-empty');
+      // 갤러리 이미지도 업데이트
+      var secEl = uploadTarget.closest('.dk-bento');
+      if (secEl) refreshGalleryCache(secEl.getAttribute('data-section'));
+      uploadTarget = null;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  /* ─────────────────────────────────
+     갤러리 라이트박스
+  ───────────────────────────────── */
+  var galEl       = document.getElementById('dk-gallery');
+  var galTitle    = document.getElementById('gal-title');
+  var galCur      = document.getElementById('gal-cur');
+  var galTotal    = document.getElementById('gal-total');
+  var galImgWrap  = document.getElementById('gal-img-wrap');
+  var galThumbs   = document.getElementById('gal-thumbs');
+  var galPrev     = document.getElementById('gal-prev');
+  var galNext     = document.getElementById('gal-next');
+  var galPhNum    = document.getElementById('gal-ph-num');
+  var galClose    = document.getElementById('gal-close');
+
+  // 섹션별 갤러리 데이터 캐시 { sectionId: [{src, label}, ...] }
+  var galCache = {};
+
+  function buildGalleryData(sectionId) {
+    var bento  = document.querySelector('.dk-bento[data-section="' + sectionId + '"]');
+    var label  = bento.getAttribute('data-label') || sectionId;
+    var items  = [];
+
+    // data-base + data-files로 전체 이미지 목록 우선 사용
+    var base      = bento.getAttribute('data-base') || '';
+    var filesAttr = bento.getAttribute('data-files');
+    if (filesAttr) {
+      var files = JSON.parse(filesAttr);
+      files.forEach(function(f, i) {
+        items.push({ src: base + f, label: label + ' ' + (i + 1) });
+      });
+    } else {
+      // fallback: 벤토 슬롯 img에서 읽기
+      var total = parseInt(bento.getAttribute('data-total'), 10) || 0;
+      var boxes = bento.querySelectorAll('.dk-b');
+      boxes.forEach(function(box, i) {
+        var img = box.querySelector('img');
+        items.push({
+          src:   img ? img.src : null,
+          label: box.getAttribute('data-label') || (label + ' ' + (i + 1))
+        });
+      });
+      for (var j = boxes.length; j < total; j++) {
+        items.push({ src: null, label: label + ' ' + (j + 1) });
+      }
+    }
+
+    galCache[sectionId] = { items: items, total: items.length, label: label };
+    return galCache[sectionId];
+  }
+
+  function refreshGalleryCache(sectionId) {
+    delete galCache[sectionId];
+  }
+
+  var galState = { sectionId: null, idx: 0, total: 0, items: [] };
+
+  function renderGallerySlide() {
+    var item  = galState.items[galState.idx];
+    var n     = galState.idx;
+    var total = galState.total;
+
+    galCur.textContent   = n + 1;
+    galTotal.textContent = total;
+    galPrev.disabled = n <= 0;
+    galNext.disabled = n >= total - 1;
+
+    if (item && item.src) {
+      var img = galImgWrap.querySelector('img.dk-gal-img');
+      if (!img) {
+        img = document.createElement('img');
+        img.className = 'dk-gal-img';
+        img.alt = '';
+        galImgWrap.innerHTML = '';
+        galImgWrap.appendChild(img);
+      }
+      img.src = item.src;
+      img.alt = item.label || '';
+    } else {
+      var ph = galImgWrap.querySelector('.dk-gal-placeholder');
+      if (!ph) {
+        galImgWrap.innerHTML = '<div class="dk-gal-placeholder"><div class="ph-num" id="gal-ph-num">' + (n+1) + '</div><div>이미지를 추가해주세요</div></div>';
+      } else {
+        ph.querySelector('.ph-num').textContent = n + 1;
+      }
+    }
+
+    // 썸네일 업데이트
+    var thumbs = galThumbs.querySelectorAll('.dk-gal-thumb');
+    thumbs.forEach(function(t, i) { t.classList.toggle('is-active', i === n); });
+    var activeThumb = thumbs[n];
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function buildThumbs() {
+    galThumbs.innerHTML = '';
+    galState.items.forEach(function(item, i) {
+      var t = document.createElement('div');
+      t.className = 'dk-gal-thumb' + (i === galState.idx ? ' is-active' : '');
+      if (item.src) {
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.label || '';
+        t.appendChild(img);
+      } else {
+        t.textContent = i + 1;
+      }
+      t.addEventListener('click', function() { galState.idx = i; renderGallerySlide(); });
+      galThumbs.appendChild(t);
+    });
+  }
+
+  function openGallery(sectionId, startIdx) {
+    var data = galCache[sectionId] || buildGalleryData(sectionId);
+    galState.sectionId = sectionId;
+    galState.items     = data.items;
+    galState.total     = data.total;
+    galState.idx       = startIdx || 0;
+    galTitle.textContent = data.label;
+    galEl.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    buildThumbs();
+    renderGallerySlide();
+  }
+
+  function closeGallery() {
+    galEl.classList.remove('is-open');
+    document.body.style.overflow = '';
+    galImgWrap.innerHTML = '<div class="dk-gal-placeholder"><div class="ph-num" id="gal-ph-num">1</div><div>사진을 추가해주세요</div></div>';
+  }
+
+  galClose.addEventListener('click', closeGallery);
+  galEl.addEventListener('click', function(e) { if (e.target === galEl) closeGallery(); });
+  document.addEventListener('keydown', function(e) {
+    if (!galEl.classList.contains('is-open')) return;
+    if (e.key === 'Escape')     closeGallery();
+    if (e.key === 'ArrowLeft')  { galState.idx = Math.max(0, galState.idx-1); renderGallerySlide(); }
+    if (e.key === 'ArrowRight') { galState.idx = Math.min(galState.total-1, galState.idx+1); renderGallerySlide(); }
+  });
+
+  function goPrev() { if (galState.idx > 0) { galState.idx--; renderGallerySlide(); } }
+  function goNext() { if (galState.idx < galState.total - 1) { galState.idx++; renderGallerySlide(); } }
+
+  galPrev.addEventListener('click', goPrev);
+  galNext.addEventListener('click', goNext);
+
+  /* ─────────────────────────────────
+     터치 스와이프 (모바일 손가락 넘기기)
+  ───────────────────────────────── */
+  var swStartX = 0, swStartY = 0, swDx = 0, swActive = false, swLocked = false;
+  var galStageEl = document.querySelector('.dk-gal-stage');
+
+  function curGalImg() { return galImgWrap.querySelector('img.dk-gal-img'); }
+
+  galStageEl.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) { swActive = false; return; }
+    swStartX = e.touches[0].clientX;
+    swStartY = e.touches[0].clientY;
+    swDx = 0; swActive = true; swLocked = false;
+    var img = curGalImg();
+    if (img) img.style.transition = 'none';
+  }, { passive: true });
+
+  galStageEl.addEventListener('touchmove', function(e) {
+    if (!swActive) return;
+    var dx = e.touches[0].clientX - swStartX;
+    var dy = e.touches[0].clientY - swStartY;
+    // 세로 스크롤 의도면 스와이프 취소
+    if (!swLocked) {
+      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { swActive = false; return; }
+      if (Math.abs(dx) > 10) swLocked = true;
+    }
+    swDx = dx;
+    var img = curGalImg();
+    if (img && swLocked) img.style.transform = 'translateX(' + dx + 'px)';
+  }, { passive: true });
+
+  galStageEl.addEventListener('touchend', function() {
+    if (!swActive) return;
+    swActive = false;
+    var img = curGalImg();
+    if (img) { img.style.transition = 'transform 0.2s ease'; img.style.transform = ''; }
+    if (Math.abs(swDx) > 45) { if (swDx < 0) goNext(); else goPrev(); }
+  }, { passive: true });
+
+  // 사진 클릭 → 갤러리 해당 슬롯에서 열기
+  document.querySelectorAll('.dk-b').forEach(function(box) {
+    box.addEventListener('click', function(e) {
+      if (e.target.classList.contains('dk-b-upload')) return;
+      var bento = box.closest('.dk-bento');
+      if (!bento) return;
+      var secId = bento.getAttribute('data-section');
+      var idx   = parseInt(box.getAttribute('data-idx'), 10) || 0;
+      openGallery(secId, idx);
+    });
+  });
+
+  // "전체 보기" 버튼 → 갤러리 첫 슬롯에서 열기
+  document.querySelectorAll('.dk-b-more').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      openGallery(btn.getAttribute('data-open'), 0);
+    });
+  });
+
+  /* ─────────────────────────────────
+     스크롤 진입 애니메이션
+  ───────────────────────────────── */
+  document.querySelectorAll('.dk-bento').forEach(function(grid) {
+    grid.querySelectorAll('.dk-b').forEach(function(item, i) {
+      item.style.transitionDelay = (i * 0.07) + 's';
+    });
+    var more = grid.querySelector('.dk-b-more');
+    if (more) more.style.transitionDelay = '0.28s';
+  });
+  document.querySelectorAll('.dk-stats-inner > div').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+  document.querySelectorAll('.dk-ov-item').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.06) + 's';
+  });
+
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('anim-in'); animObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -28px 0px' });
+
+  document.querySelectorAll('.dk-hd, .dk-bullets, .dk-b, .dk-b-more, .dk-stats-inner > div, .dk-ov-head, .dk-ov-item')
+    .forEach(function(el) { animObs.observe(el); });
+
+  /* ─────────────────────────────────
+     스탯 카운트업
+  ───────────────────────────────── */
+  var counted = false;
+  var statsObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting || counted) return;
+      counted = true;
+      document.querySelectorAll('.dk-snum em').forEach(function(em) {
+        var end = parseInt(em.textContent.replace(/[^0-9]/g, ''), 10);
+        if (!end) return;
+        var dur = 1400, t0 = null;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          em.textContent = Math.round(eased * end).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  }, { threshold: 0.3 });
+  var statsEl = document.querySelector('.dk-stats');
+  if (statsEl) statsObs.observe(statsEl);
+
+  /* ─────────────────────────────────
+     사이드 nav 활성화
+  ───────────────────────────────── */
+  var snItems  = document.querySelectorAll('.dk-sn-item');
+  var sections = document.querySelectorAll('[id^="sec-"]');
+  var snObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var id = e.target.getAttribute('id');
+        snItems.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(function(s) { snObs.observe(s); });
+
+})();
+</script>
+</body>
+</html>
