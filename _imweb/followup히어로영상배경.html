@@ -1,0 +1,96 @@
+<style>
+.dk-bg-video-section {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.dk-bg-video-section video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 영상 위 필터 — 몽타주 컷 전환에도 좌측 흰 글씨가 항상 읽히게 옅은 좌→우 그라데이션 */
+.dk-bg-video-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0) 75%);
+  z-index: 1;
+}
+
+/* 앞쪽 텍스트 영역 */
+.dk-bg-video-content {
+  position: relative;
+  z-index: 2;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0px;
+  box-sizing: border-box;
+  color: #fff;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.dk-bg-video-content h2 {
+  margin: 0 0 20px;
+  font-family: 'Paperlogy', sans-serif;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+  word-break: keep-all;
+}
+
+.dk-bg-video-content p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 300;
+  word-break: keep-all;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .dk-bg-video-section,
+  .dk-bg-video-content {
+    min-height: 520px;
+  }
+
+  .dk-bg-video-content {
+    padding: 72px 24px;
+  }
+
+  .dk-bg-video-content h2 {
+    font-size: 22px;
+  }
+
+  .dk-bg-video-content p {
+    font-size: 16px;
+  }
+}
+</style>
+
+<section class="dk-bg-video-section">
+  <video autoplay muted loop playsinline preload="auto" poster="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/followup_hero_poster.jpg">
+    <source src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/followup_hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="dk-bg-video-content">
+    <h2>
+      캠프가 끝나도,<br>
+      성장은 계속됩니다
+    </h2>
+    <p>
+      캠프에서 만든 끈기와 학습 습관이 흩어지지 않도록,<br>
+      집으로 돌아간 뒤에도 끝까지 이어서 관리합니다.
+    </p>
+  </div>
+</section>
