@@ -117,12 +117,21 @@
 
 <!-- ============================================================
      [삽입] 커리큘럼 2번 섹션 · 완전 몰입 환경(디지털 디톡스 + 실제 밴드 공유 + 대표 직통)
-     · "3단계 수업"(1번)과 "영어로 끝나지 않습니다"(2번) 사이에 삽입
-     · PC 2단(텍스트 좌 / 슬라이더 우), 모바일 세로 스택
+     · 헤더: 풀폭 split(h2 좌상단 / 서브 우상단) — 섹션1과 동일
+     · 콘텐츠: 본문 좌(상단정렬) / 밴드 슬라이더 우 · 모바일 세로 스택
      ============================================================ -->
 <style>
-.dkbsec__grid { display:grid; grid-template-columns:1fr 440px; gap:clamp(36px,5vw,72px); align-items:center; }
-@media (max-width:900px){ .dkbsec__grid { grid-template-columns:1fr; gap:36px; } }
+.dkbsec__head { display:flex; justify-content:space-between; align-items:flex-end; gap:48px; flex-wrap:wrap; margin-bottom:48px; }
+.dkbsec__sub { font-size:18px; color:#555; line-height:1.75; margin:0; max-width:300px; text-align:right; text-wrap:pretty; }
+.dkbsec__grid { display:grid; grid-template-columns:1fr 440px; gap:clamp(36px,5vw,72px); align-items:start; }
+.dkbsec__body p { font-size:17px; color:#555; line-height:1.85; margin:0 0 20px; max-width:520px; }
+.dkbsec__body p:last-child { margin-bottom:0; }
+.dkbsec__body strong { color:#1a1a1a; font-weight:700; }
+@media (max-width:900px){
+  .dkbsec__head { flex-direction:column; align-items:flex-start; gap:16px; margin-bottom:32px; }
+  .dkbsec__sub { text-align:left; max-width:100%; }
+  .dkbsec__grid { grid-template-columns:1fr; gap:32px; }
+}
 .dkb__stage { position:relative; max-width:432px; margin:0 auto; width:100%; }
 .dkb__view { overflow:hidden; border-radius:20px; background:#fff; border:1px solid #e9e9e9; box-shadow:0 14px 40px rgba(0,0,0,.09); }
 .dkb__track { display:flex; transition:transform .45s cubic-bezier(.4,0,.2,1); }
@@ -145,16 +154,20 @@
 <section style="background:#F5F5F5;padding:96px 0;">
   <div style="max-width:1280px;margin:0 auto;padding:0;">
 
+    <!-- 헤더: 풀폭 split -->
+    <p style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">몰입 환경 · Digital Detox</p>
+    <div class="dkbsec__head" data-split-header="">
+      <h2 style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1.25;letter-spacing:-0.5px;margin:0;flex-shrink:0;">완전한 몰입을 위해,<br>휴대폰은 잠시 <span style="color:#ab0000;">내려놓습니다</span></h2>
+      <p class="dkbsec__sub">단절이 아닙니다.<br>잠시 떨어져 있는 대신, 아이의 하루를<br>하루 세 번 더 자세히 전합니다.</p>
+    </div>
+
+    <!-- 콘텐츠: 본문 좌(상단정렬) / 슬라이더 우 -->
     <div class="dkbsec__grid" data-grid-2="">
-      <!-- 좌: 텍스트 -->
-      <div>
-        <p style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 14px;">몰입 환경 · Digital Detox</p>
-        <h2 style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1.25;letter-spacing:-0.5px;margin:0 0 22px;">완전한 몰입을 위해,<br>휴대폰은 잠시 <span style="color:#ab0000;">내려놓습니다</span></h2>
-        <p style="font-size:17px;color:#555;line-height:1.85;margin:0 0 26px;max-width:520px;">캠프 기간, 아이의 손에서 스마트폰이 잠시 떠납니다. 알림도 SNS도 게임도 없는 환경에서 아이는 <strong style="color:#1a1a1a;font-weight:700;">비로소 학습과 또래, 그리고 자기 자신에게만 집중</strong>합니다.</p>
-        <p style="font-size:17px;color:#555;line-height:1.85;margin:0;max-width:520px;">잠시 떨어져 있는 대신, 아이의 하루는 오히려 더 투명하게 열립니다. <strong style="color:#1a1a1a;font-weight:700;">하루 세 번, 담당 선생님이 밴드로 이렇게 전합니다.</strong></p>
+      <div class="dkbsec__body">
+        <p>캠프 기간, 아이의 손에서 스마트폰이 잠시 떠납니다. 알림도 SNS도 게임도 없는 환경에서 아이는 <strong>비로소 학습과 또래, 그리고 자기 자신에게만 집중</strong>합니다.</p>
+        <p>그래서 부모님이 불안하지 않도록, 아이의 하루를 오히려 더 투명하게 열어 둡니다. <strong>담당 선생님이 하루 세 번, 아침·낮·저녁의 모습을 밴드로 그대로 전합니다.</strong></p>
       </div>
 
-      <!-- 우: 밴드 슬라이더 -->
       <div>
         <div class="dkb__stage">
           <div class="dkb__view">
