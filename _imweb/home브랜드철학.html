@@ -1,0 +1,148 @@
+<style>
+/* ============================================================
+   닥공 교육 철학 — 히어로 다음 브랜드 서사 섹션 · v3 (홈 결 정합)
+   · v1(번호카드)·v2(글덩어리 매니페스토) → 라이브 홈 실측 후 재설계.
+   · 홈 문법 = 좌측 스택 헤더(라벨→볼드 헤드→회색 서브) + 실사진이 캐리 +
+     볼드·미니멀 카피 + 흰/회 교차. 그 문법으로 서사를 3비트로 흐르게.
+   · 재능 아닌 끈기 → 영어는 도구 → 정작 준비 필요한 건 부모(Peak) → 클로징.
+   · 사진은 준영 제공. 여기선 .dk-why__slot 자리+스펙만. (콘텐츠 워크플로우)
+   · 폭 1280px(공통설정 정합), 레드 #ab0000 화면당 2회 절제, JS-옵트인 리빌.
+   ============================================================ */
+
+.dk-why { background: #fff; padding: clamp(64px, 10vw, 120px) 0; }
+.dk-why, .dk-why * { word-break: keep-all; box-sizing: border-box; }
+.dk-why__wrap { max-width: 1280px; margin: 0 auto; padding: 0; box-sizing: border-box; }  /* 약속 파일과 동일: 패딩0 → 좌측 시작점 일치 */
+
+/* 줄바꿈 미학: 헤드/짧은 문장 = 두 줄 균형(balance), 본문 = 고아줄 방지(pretty) */
+.dk-why__title, .dk-why__st, .dk-why__close, .dk-why__rp { text-wrap: balance; }
+.dk-why__sub, .dk-why__slot .spec { text-wrap: pretty; }
+
+/* ── 좌측 스택 헤더 (홈 네이티브 섹션과 동일 문법) ── */
+.dk-why__head { margin-bottom: clamp(44px, 6vw, 72px); }
+.dk-why__label { font: 700 15px/30px 'Pretendard',sans-serif; letter-spacing: normal; color: #ab0000; margin: 0 0 10px; }
+.dk-why__label span { color: #cfcfcf; margin: 0 6px; font-weight: 400; }
+/* 헤드라인: <h2>라 아이엠웹 테마 h2(48px)가 덮음 → !important로 약속 파일과 동일 고정(Paperlogy 36/700) */
+.dk-why__title {
+  font-family: 'Paperlogy','Pretendard Variable','Pretendard',sans-serif !important;
+  font-size: 36px !important; font-weight: 700 !important; line-height: 1.2 !important;
+  letter-spacing: -0.5px !important; color: #1A1A1A !important; margin: 0;
+}
+.dk-why__title em { font-style: normal; color: #ab0000 !important; }
+.dk-why__sub { font: 400 18px/1.35 'Pretendard',sans-serif; color: #555; margin: 16px 0 0; text-align: left; word-break: keep-all; }
+
+/* ── 3비트 사진-서사 행 (사진 ↔ 텍스트 교차) ── */
+.dk-why__row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: center; margin-top: clamp(44px, 6vw, 76px); }
+.dk-why__row--rev .dk-why__media { order: 2; }
+
+/* 비트 문장: <h3>라 아이엠웹 테마 h3가 덮음 → !important 고정. 섹션 헤드(36)보다 작게 26/700 */
+.dk-why__st {
+  font-family: 'Paperlogy','Pretendard Variable','Pretendard',sans-serif !important;
+  font-size: 26px !important; font-weight: 700 !important; line-height: 1.4 !important;
+  letter-spacing: -0.5px !important; color: #1A1A1A !important; margin: 0 0 16px;
+}
+.dk-why__st em { font-style: normal; color: #ab0000 !important; }
+.dk-why__rp { font: 400 clamp(15.5px, 1.3vw, 17px)/1.85 'Pretendard',sans-serif; color: #555; margin: 0; max-width: 480px; }
+
+/* ── 사진 자리(준영 제공 전 플레이스홀더) ── */
+.dk-why__slot {
+  position: relative; border: 2px dashed #d5d5d5; border-radius: 16px; background: #fafafa;
+  aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 12px; padding: 24px;
+}
+.dk-why__slot svg { width: 34px; height: 34px; stroke: #c4c4c4; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.dk-why__slot .tag { font: 700 11px/1 'Pretendard',sans-serif; letter-spacing: 1px; color: #999; border: 1px solid #d0d0d0; border-radius: 100px; padding: 5px 11px; }
+.dk-why__slot .spec { font: 400 13px/1.65 'Pretendard',sans-serif; color: #9a9a9a; max-width: 300px; margin: 0; }
+
+/* ── 클로징 한 줄 (Peak-End · 조용한 못 박기) ── */
+.dk-why__close {
+  margin: clamp(52px, 8vw, 88px) auto 0; max-width: 780px; text-align: center;
+  font: 700 clamp(19px, 1.8vw, 24px)/1.55 'Paperlogy','Pretendard',sans-serif;
+  color: #1A1A1A; letter-spacing: -0.5px;
+}
+.dk-why__close em { font-style: normal; color: #ab0000; }
+
+/* ── JS-옵트인 리빌 (script 제거돼도 .dk-reveal 기본 노출) ── */
+.dk-why--js .dk-reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+.dk-why--js .dk-reveal.is-in { opacity: 1; transform: none; }
+
+/* ── 모바일 ── */
+@media (max-width: 768px) {
+  .dk-why__wrap { padding: 0 20px; }                 /* 약속 파일과 동일: 모바일 안전 패딩 */
+  .dk-why__label { font-size: 13px; }
+  .dk-why__title { font-size: 26px !important; }
+  .dk-why__sub { font-size: 15px; line-height: 1.55; }
+  .dk-why__row { grid-template-columns: 1fr; gap: 20px; margin-top: 48px; }
+  .dk-why__media { order: 0 !important; }   /* 사진 항상 위로 */
+  .dk-why__st { font-size: 22px !important; }
+  .dk-why__rp { max-width: none; }
+}
+</style>
+
+<section class="dk-why">
+  <div class="dk-why__wrap">
+
+    <!-- 좌측 스택 헤더 -->
+    <div class="dk-why__head dk-reveal">
+      <p class="dk-why__label">PHILOSOPHY <span>|</span> 닥공의 교육 철학</p>
+      <h2 class="dk-why__title">우리 아이는 공부에 <em>재능</em>이 있을까?<br>힘든 공부를 해낼 수 있을까?</h2>
+      <p class="dk-why__sub">모든 부모가 한 번쯤 하는 걱정입니다.<br>닥공이 20년간 찾은 답은, 부모님의 걱정과 조금 다릅니다.</p>
+    </div>
+
+    <!-- 비트 1 : 재능이 아니라 끈기 (사진 좌) -->
+    <div class="dk-why__row dk-reveal">
+      <div class="dk-why__media">
+        <div class="dk-why__slot" style="border:0;background:#000;padding:0;overflow:hidden;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/brand/brandstory1.webp" alt="밤자습에 몰입한 아이" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+      </div>
+      <div class="dk-why__body">
+        <h3 class="dk-why__st">문제는 재능이 아니라,<br><em>끈기</em>였습니다</h3>
+        <p class="dk-why__rp">학원을 다 보내봐도 6개월을 못 넘기던 아이. 문제는&nbsp;재능이&nbsp;아닙니다. 한&nbsp;분야에서 성공한 사람도, 공부를&nbsp;잘하는&nbsp;아이도 공통점은 끝까지&nbsp;해내는 근성&nbsp;하나였습니다.</p>
+      </div>
+    </div>
+
+    <!-- 비트 2 : 영어는 도구 (사진 우) -->
+    <div class="dk-why__row dk-why__row--rev dk-reveal">
+      <div class="dk-why__media">
+        <div class="dk-why__slot" style="border:0;background:#000;padding:0;overflow:hidden;"><video autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/brand/brandstory2.mp4" type="video/mp4"></video></div>
+      </div>
+      <div class="dk-why__body">
+        <h3 class="dk-why__st">닥공캠프의 영어는 목적이 아니라,<br>끈기를 기르는 <em>도구</em>입니다</h3>
+        <p class="dk-why__rp">매일의 학습량을 그날 안에 끝내고, 부모 없이 스스로&nbsp;해내고, 또래와&nbsp;부대끼며 규칙을 배웁니다. 힘든 과정을 이겨낸&nbsp;아이는 성취감을&nbsp;맛보고, 그 성취가 다음 도전의&nbsp;힘이 됩니다.</p>
+      </div>
+    </div>
+
+    <!-- 비트 3 : 정작 준비 필요한 건 부모 (사진 좌 · Peak) -->
+    <div class="dk-why__row dk-reveal">
+      <div class="dk-why__media">
+        <div class="dk-why__slot" style="border:0;background:#000;padding:0;overflow:hidden;"><video autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><source src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/brand/brandstory3.mp4" type="video/mp4"></video></div>
+      </div>
+      <div class="dk-why__body">
+        <h3 class="dk-why__st">정작 준비가 필요한 건,<br>아이가 아니라 <em>부모</em>입니다</h3>
+        <p class="dk-why__rp">아이는 생각보다 강합니다. 지난 20년간 힘들다는&nbsp;이유로 중간에 포기한&nbsp;아이는 단 한 명도&nbsp;없었습니다. 필요한&nbsp;건&nbsp;아이를 믿고 기다려&nbsp;줄 부모의 작은&nbsp;용기뿐입니다.</p>
+      </div>
+    </div>
+
+    <!-- 클로징 -->
+    <p class="dk-why__close dk-reveal">그 용기를 내주신다면, 나머지는 <em>닥공이 20년의 노하우로</em> 함께 지켜내겠습니다.</p>
+
+  </div>
+</section>
+
+<script>
+/* JS-옵트인 리빌: 스크롤 진입 시 페이드업. script 제거되면 .dk-reveal은 기본 노출 유지 */
+(function () {
+  var root = document.querySelector('.dk-why');
+  if (!root) return;
+  root.classList.add('dk-why--js');
+  var els = root.querySelectorAll('.dk-reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (e) { e.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (x) {
+      if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
