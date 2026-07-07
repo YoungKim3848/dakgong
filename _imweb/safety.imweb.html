@@ -1,0 +1,814 @@
+<!-- Pretendard CDN -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+<style>
+
+.dk-core, .dk-core * { box-sizing: border-box; word-break: keep-all; }
+
+.dk-core { font-family: 'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif; color: #1a1a1a; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+/* 리빌 애니메이션 — JS가 dk-js를 붙였을 때만 숨김 시작 (Free 플랜 script 제거 시에도 콘텐츠 100% 노출) */
+
+.dk-js .dk-reveal,.dk-js .dk-reveal-left,.dk-js .dk-reveal-right,.dk-js .dk-reveal-scale{will-change:opacity,transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+
+.dk-js .dk-reveal{opacity:0;transform:translateY(32px) translateZ(0);transition:opacity 1.4s cubic-bezier(.22,.68,0,1.2),transform 1.4s cubic-bezier(.22,.68,0,1.2)}
+
+.dk-js .dk-reveal-left{opacity:0;transform:translateX(-40px) translateZ(0);transition:opacity 1.4s cubic-bezier(.22,.68,0,1.2),transform 1.4s cubic-bezier(.22,.68,0,1.2)}
+
+.dk-js .dk-reveal-right{opacity:0;transform:translateX(40px) translateZ(0);transition:opacity 1.4s cubic-bezier(.22,.68,0,1.2),transform 1.4s cubic-bezier(.22,.68,0,1.2)}
+
+.dk-js .dk-reveal-scale{opacity:0;transform:scale(0.9) translateZ(0);transition:opacity 1.3s cubic-bezier(.34,1.56,.64,1),transform 1.3s cubic-bezier(.34,1.56,.64,1)}
+
+.dk-js .dk-reveal.dk-in,.dk-js .dk-reveal-left.dk-in,.dk-js .dk-reveal-right.dk-in,.dk-js .dk-reveal-scale.dk-in{opacity:1;transform:translateZ(0)}
+
+.dk-d1{transition-delay:.14s}.dk-d2{transition-delay:.28s}.dk-d3{transition-delay:.42s}.dk-d4{transition-delay:.56s}
+
+/* 카드 hover */
+
+.dk-sf-card{transition:transform .3s ease,box-shadow .3s ease;cursor:default}
+
+.dk-sf-card:hover,.dk-sf-card:active{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,0.09)}
+
+.dk-sf-stat{transition:transform .3s ease}
+
+.dk-sf-stat:hover,.dk-sf-stat:active{transform:translateY(-5px)}
+
+.dk-sf-glass{background:rgba(255,255,255,0.055);border:1px solid rgba(255,255,255,0.14);border-radius:16px;transition:transform .35s ease,background .35s ease,border-color .35s ease;transform:translateZ(0);cursor:default}
+
+.dk-sf-glass:hover,.dk-sf-glass:active{transform:translateY(-6px) translateZ(0);background:rgba(255,255,255,0.1)!important;border-color:rgba(255,255,255,0.28)!important}
+
+.dk-sf-chip{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+
+.dk-sf-chip:hover,.dk-sf-chip:active{transform:translateY(-4px);border-color:#ab0000;box-shadow:0 16px 36px rgba(0,0,0,0.08)}
+
+.dk-chipimg img{transition:transform .5s ease}
+
+.dk-sf-chip:hover .dk-chipimg img,.dk-sf-chip:active .dk-chipimg img{transform:scale(1.05)}
+
+/* 안전 인증·점검 이미지 카드 (첨부2 스타일: 사진+타이틀 오버레이 + 아래 한줄) */
+
+.dk-actcard{cursor:default}
+
+.dk-actcard .dk-actmedia{transition:transform .3s ease,box-shadow .3s ease}
+
+.dk-actcard:hover .dk-actmedia,.dk-actcard:active .dk-actmedia{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,0.10)}
+
+.dk-actcard .dk-actmedia img{transition:transform .5s ease}
+
+.dk-actcard:hover .dk-actmedia img,.dk-actcard:active .dk-actmedia img{transform:scale(1.06)}
+
+/* 카톡 캡처 가로 슬라이드 스트립 (높이 통일 + 터치/마우스 드래그) */
+
+.dk-kstrip{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;cursor:grab;padding-bottom:10px;}
+
+.dk-kstrip.dragging{cursor:grabbing;}
+
+.dk-kstrip img{scroll-snap-align:center;}
+
+.dk-kstrip::-webkit-scrollbar{height:6px;}
+
+.dk-kstrip::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.22);border-radius:100px;}
+
+.dk-kstrip::-webkit-scrollbar-track{background:transparent;}
+
+@media (max-width: 768px) {
+
+  .dk-core section { padding-top: 66px !important; padding-bottom: 66px !important; }
+
+  .dk-core h2 { font-size: 26px !important; letter-spacing: -0.3px !important; }
+
+  .dk-core h3 { font-size: 20px !important; }
+
+  .dk-core [style*="max-width:1280px"] { padding-left: 20px !important; padding-right: 20px !important; }
+
+  .dk-core [data-split-header] { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; margin-bottom: 40px !important; }
+
+  .dk-core [data-split-header] > p { text-align: left !important; max-width: 100% !important; }
+
+  .dk-core [data-stat-grid] { grid-template-columns: 1fr 1fr !important; }
+
+  .dk-core [data-stat-grid] > div { padding: 26px 20px !important; }
+
+  .dk-core [data-stat-grid] > div > div:nth-child(2) { font-size: 34px !important; }
+
+  .dk-core [data-chip-grid] { grid-template-columns: 1fr 1fr !important; }
+
+  .dk-core .dk-kstrip img { height: 440px !important; }
+
+  .dk-core [data-collage] { grid-template-columns: 1fr 1fr !important; grid-template-rows: auto !important; aspect-ratio: auto !important; }
+
+  .dk-core [data-collage] .dk-cv { grid-column: 1 / 3 !important; grid-row: auto !important; aspect-ratio: 16 / 10 !important; }
+
+  .dk-core [data-collage] .dk-ci { aspect-ratio: 4 / 3 !important; }
+
+  .dk-core [data-p1-grid] { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  .dk-core [data-p1-grid] > p { text-align: left !important; }
+
+  .dk-core [data-quote] { font-size: 22px !important; }
+
+  .dk-core [data-recap-row] { grid-template-columns: auto 1fr !important; gap: 20px !important; }
+
+  .dk-core [data-recap-num] { font-size: 40px !important; }
+
+  .dk-core [data-closing] { font-size: 24px !important; }
+
+}
+
+@media (max-width: 480px) {
+
+  .dk-core h2 { font-size: 22px !important; }
+
+  .dk-core [data-stat-grid] { grid-template-columns: 1fr 1fr !important; }
+
+  .dk-core [data-stat-grid] > div { padding: 22px 14px !important; }
+
+  .dk-core [data-stat-grid] > div > div:nth-child(2) { font-size: 30px !important; }
+
+  .dk-core [data-quote] { font-size: 19px !important; }
+
+  .dk-core [data-closing] { font-size: 21px !important; }
+
+}
+
+/* ▣ 콘텐츠 자리(플레이스홀더) — 준영이 실제 사진/영상으로 교체할 슬롯 + 메모 */
+
+.dk-slot{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;border:2px dashed #cfcfcf;border-radius:16px;background:#fafafa;padding:34px 26px;}
+
+.dk-slot .ico{opacity:.5;margin-bottom:2px;}
+
+.dk-slot .ico svg{display:block;}
+
+.dk-slot .ttl{font-size:16px;font-weight:800;color:#1a1a1a;letter-spacing:-0.2px;}
+
+.dk-slot .spec{font-size:12.5px;font-weight:700;color:#ab0000;letter-spacing:.3px;}
+
+.dk-slot .desc{font-size:14px;color:#777;line-height:1.65;max-width:560px;}
+
+.dk-slot .tag{position:absolute;top:13px;left:13px;font-size:10px;font-weight:700;letter-spacing:1px;color:#ab0000;border:1px solid #ab0000;border-radius:100px;padding:3px 9px;background:#fff;}
+
+.dk-slot--dark{border-color:rgba(255,255,255,0.26);background:rgba(255,255,255,0.035);}
+
+.dk-slot--dark .ttl{color:#fff;}
+
+.dk-slot--dark .desc{color:rgba(255,255,255,0.62);}
+
+.dk-slot--dark .tag{background:transparent;}
+
+</style>
+
+
+
+<div class="dk-core">
+
+
+
+<!-- ① 인트로 — 20년 무사고 훅 -->
+
+<section style="background:#ffffff;padding:100px 0 92px;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">닥공캠프 안전</p>
+
+    <div data-split-header="" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:48px;flex-wrap:wrap;">
+
+      <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:40px;font-weight:700;color:#1a1a1a;line-height:1.22;letter-spacing:-0.6px;margin:0;flex-shrink:0;">20년간 5,000명,<br>단 한 번의 <span style="color:#ab0000;">사고도 없이</span></h2>
+
+      <p class="dk-reveal-right dk-d1" style="font-size:18px;color:#555555;line-height:1.75;margin:0;max-width:330px;text-align:right;text-wrap:pretty;">재원율 60% 이상, 적게는 2회<br>많게는 12회까지 다시 찾는 캠프.<br>오래 함께한 학부모님들이<br>닥공의 안전을 증명합니다.</p>
+
+    </div>
+
+    <div data-stat-grid="" class="dk-reveal-scale dk-d2" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+
+      <div class="dk-sf-stat" style="background:#F5F5F5;border-radius:16px;padding:34px 28px;">
+
+        <div style="width:26px;height:3px;background:#ab0000;margin-bottom:20px;"></div>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:42px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:12px;">20<span style="font-size:20px;font-weight:600;">년</span></div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;">사고 한 번 없이<br>이어온 캠프 운영</div>
+
+      </div>
+
+      <div class="dk-sf-stat" style="background:#F5F5F5;border-radius:16px;padding:34px 28px;">
+
+        <div style="width:26px;height:3px;background:#1a1a1a;margin-bottom:20px;"></div>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:42px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:12px;">5,000<span style="font-size:20px;font-weight:600;">명+</span></div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;">닥공과 함께<br>캠프 생활을 한 아이들</div>
+
+      </div>
+
+      <div class="dk-sf-stat" style="background:#F5F5F5;border-radius:16px;padding:34px 28px;">
+
+        <div style="width:26px;height:3px;background:#1a1a1a;margin-bottom:20px;"></div>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:42px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:12px;">60<span style="font-size:20px;font-weight:600;">%+</span></div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;">다시 돌아오는<br>높은 재원 유지율</div>
+
+      </div>
+
+      <div class="dk-sf-stat" style="background:#F5F5F5;border-radius:16px;padding:34px 28px;">
+
+        <div style="width:26px;height:3px;background:#1a1a1a;margin-bottom:20px;"></div>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:42px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:12px;">5,000<span style="font-size:20px;font-weight:600;">평</span></div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;">외부인 출입을 막은<br>닥공 전용 시설</div>
+
+      </div>
+
+    </div>
+
+    <p class="dk-reveal dk-d3" style="font-size:17px;color:#4A4A4A;line-height:1.8;margin:40px 0 0;max-width:760px;">닥공이 20년간 사고 한 번 없었던 이유 <b style="color:#1a1a1a;">4가지</b>를 공개합니다. <b style="color:#1a1a1a;">닥공캠프가 아니어도 좋습니다.</b> 끝까지 읽어 보시면, 안전한 영어캠프를 가려내는 안목이 생기실 거라 확신합니다.</p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ② 원칙 01 — 누구도 믿지 않습니다 -->
+
+<section style="background:#F5F5F5;padding:96px 0;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">원칙 01</p>
+
+    <div data-split-header="" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:48px;flex-wrap:wrap;">
+
+      <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1.25;letter-spacing:-0.5px;margin:0;flex-shrink:0;">누구도<br><span style="color:#ab0000;">믿지 않습니다</span></h2>
+
+      <p class="dk-reveal-right dk-d1" style="font-size:18px;color:#555555;line-height:1.75;margin:0;max-width:320px;text-align:right;text-wrap:pretty;">상담한 사람이 아이와 지내지 않는다면?<br>닥공은 상담부터 현지 운영까지<br>A부터 Z까지 직접 합니다.</p>
+
+    </div>
+
+    <div data-p1-grid="" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:48px;">
+
+      <div class="dk-reveal-left dk-d1">
+
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:22px;"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 11.7l2.1 2.1 4-4.2"/></svg>
+
+        <p style="font-size:17px;color:#4A4A4A;line-height:1.85;margin:0;">대부분의 해외 영어캠프는 유학원이 학생을 모집하고, 실제 진행은 <b style="color:#1a1a1a;">현지 어학원</b>이 맡습니다. 상담하는 사람과 아이와 지내는 사람이 다른 것이죠.</p>
+
+        <p style="font-size:17px;color:#4A4A4A;line-height:1.85;margin:20px 0 0;">매일 먹는 약, 음식 알러지, 성격과 학습 레벨까지 아이들은 모두 다릅니다. 보호란 한 명 한 명을 자세히 들여다본다는 뜻입니다.</p>
+
+      </div>
+
+      <div class="dk-reveal-right dk-d2" style="background:#fff;border:1px solid #EBEBEB;border-radius:16px;padding:38px 36px;">
+
+        <div style="font-size:12px;font-weight:700;color:#ab0000;letter-spacing:2px;margin-bottom:18px;">닥공의 원칙</div>
+
+        <div style="font-size:22px;font-weight:800;color:#1a1a1a;line-height:1.4;letter-spacing:-0.3px;margin-bottom:22px;">우리 손을 거치지 않고는<br>믿지 않습니다.</div>
+
+        <div style="height:1px;background:#EBEBEB;margin-bottom:22px;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+
+          <div style="display:flex;gap:11px;align-items:flex-start;"><svg style="flex-shrink:0;margin-top:3px;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg><span style="font-size:15px;color:#4A4A4A;line-height:1.6;">상담 때 만난 <b style="color:#1a1a1a;">대표·임직원·선생님</b>이 필리핀에서 아이들과 직접 생활합니다</span></div>
+
+          <div style="display:flex;gap:11px;align-items:flex-start;"><svg style="flex-shrink:0;margin-top:3px;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg><span style="font-size:15px;color:#4A4A4A;line-height:1.6;">캠프 관련 A부터 Z까지 모든 과정을 직접 챙깁니다</span></div>
+
+          <div style="display:flex;gap:11px;align-items:flex-start;"><svg style="flex-shrink:0;margin-top:3px;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg><span style="font-size:15px;color:#4A4A4A;line-height:1.6;">그래야 "믿고 맡기시라"고 당당히 말씀드릴 수 있으니까요</span></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 직접 하는 것들 chip 4 -->
+
+    <p class="dk-reveal dk-d1" style="font-size:14px;font-weight:700;color:#999;letter-spacing:1px;margin:0 0 16px;">닥공이 직접 하는 것들</p>
+
+    <!-- 설명회 = 메인 큰 백그라운드 영상 (컨트롤 없음) -->
+
+    <div class="dk-sf-chip dk-reveal-scale dk-d1" style="position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;margin-bottom:16px;">
+
+      <video src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/info_session.mp4" poster="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/info_session_poster.jpg" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:56px 24px 20px;background:linear-gradient(to top,rgba(0,0,0,0.75),rgba(0,0,0,0));pointer-events:none;">
+
+        <div style="font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.2px;">설명회</div>
+
+      </div>
+
+    </div>
+
+    <div data-chip-grid="" class="dk-reveal-scale dk-d2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:30px;">
+
+      <div class="dk-sf-chip" style="background:#fff;border:1px solid #E3E3E3;border-radius:14px;overflow:hidden;">
+
+        <div class="dk-chipimg" style="aspect-ratio:4/3;overflow:hidden;background:#eee;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/run_textbook.webp" alt="닥공이 직접 교재를 제작하는 모습" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+        <div style="padding:15px 18px;font-size:16px;font-weight:700;color:#1a1a1a;">교재 제작</div>
+
+      </div>
+
+      <div class="dk-sf-chip" style="background:#fff;border:1px solid #E3E3E3;border-radius:14px;overflow:hidden;">
+
+        <div class="dk-chipimg" style="aspect-ratio:4/3;overflow:hidden;background:#eee;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/run_repair.webp" alt="닥공이 직접 건물을 보수하는 모습" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+        <div style="padding:15px 18px;font-size:16px;font-weight:700;color:#1a1a1a;">건물 보수</div>
+
+      </div>
+
+      <div class="dk-sf-chip" style="background:#fff;border:1px solid #E3E3E3;border-radius:14px;overflow:hidden;">
+
+        <div class="dk-chipimg" style="aspect-ratio:4/3;overflow:hidden;background:#eee;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/kimjang.webp" alt="닥공이 직접 김장하는 모습" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+        <div style="padding:15px 18px;font-size:16px;font-weight:700;color:#1a1a1a;">김장</div>
+
+      </div>
+
+    </div>
+
+    <div class="dk-sf-chip dk-reveal-scale dk-d1" style="position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;margin-bottom:30px;">
+      <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/insol.webp" alt="인솔부터 귀국까지 전 일정 동행" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:56px 24px 20px;background:linear-gradient(to top,rgba(0,0,0,0.75),rgba(0,0,0,0));pointer-events:none;">
+        <div style="font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.2px;">인솔부터 귀국까지 전 일정</div>
+      </div>
+    </div>
+    <div class="dk-reveal" style="border-left:3px solid #ab0000;padding:4px 0 4px 22px;">
+
+      <p style="font-size:18px;font-weight:600;color:#1a1a1a;line-height:1.7;margin:0;">아이들 먹을 김장까지 직접 하는 캠프가 있다면, 꼭 그런 곳에 보내셔야 합니다.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ③ 원칙 02 — 아무나 하지 않습니다 -->
+
+<section style="background:#ffffff;padding:96px 0;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">원칙 02</p>
+
+    <div data-split-header="" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:48px;flex-wrap:wrap;">
+
+      <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1.25;letter-spacing:-0.5px;margin:0;flex-shrink:0;">아무나<br><span style="color:#ab0000;">하지 않습니다</span></h2>
+
+      <p class="dk-reveal-right dk-d1" style="font-size:18px;color:#555555;line-height:1.75;margin:0;max-width:330px;text-align:right;text-wrap:pretty;">24시간 함께하는 선생님,<br>그 선생님을 누가 관리하는지까지<br>한 번 더 확인하셔야 합니다.</p>
+
+    </div>
+
+    <!-- 원칙02 콘텐츠 — 풀폭 콜라주 (왼쪽 큰 영상 + 오른쪽 이미지 상하 2단) -->
+
+    <div class="dk-reveal-scale" style="width:100%;margin:0 0 44px;">
+
+      <div data-collage="" style="display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:2/1;">
+
+        <div class="dk-cv" style="grid-row:1 / 3;border-radius:14px;overflow:hidden;background:#000;">
+
+          <video src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/sa_teacher.mp4" poster="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/sa_teacher_poster.jpg" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+
+        </div>
+
+        <div class="dk-ci" style="border-radius:14px;overflow:hidden;background:#eee;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/staff_edu1.webp" alt="한국인 스탭 교육" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+        <div class="dk-ci" style="border-radius:14px;overflow:hidden;background:#eee;"><img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/staff_edu2.webp" alt="한국인 스탭 교육" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+
+      <div class="dk-sf-card dk-reveal-scale dk-d1" style="background:#F5F5F5;border-radius:16px;padding:38px 34px;display:flex;flex-direction:column;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:22px;"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></svg>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:14px;">24<span style="font-size:18px;font-weight:600;">시간 밀착</span></div>
+
+        <div style="font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">4인 1실, 방마다 선생님 한 분</div>
+
+        <p style="font-size:15px;color:#4A4A4A;line-height:1.7;margin:0;">각 방을 원어민 선생님 한 분이 24시간 함께 생활하며 아이들의 교육과 생활을 전담합니다.</p>
+
+      </div>
+
+      <div class="dk-sf-card dk-reveal-scale dk-d2" style="background:#F5F5F5;border-radius:16px;padding:38px 34px;display:flex;flex-direction:column;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:22px;"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.5a3 3 0 0 1 0 5.6M17.5 14c2.3.5 4 2.4 4 5"/></svg>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:14px;">60<span style="font-size:18px;font-weight:600;">명+ 관리</span></div>
+
+        <div style="font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">대표·임직원이 직접 투입</div>
+
+        <p style="font-size:15px;color:#4A4A4A;line-height:1.7;margin:0;">선생님만 60명이 넘습니다. 그 인원을 관리하기 위해 닥공 대표와 임직원 모두가 직접 캠프에 들어갑니다.</p>
+
+      </div>
+
+      <div class="dk-sf-card dk-reveal-scale dk-d3" style="background:#F5F5F5;border-radius:16px;padding:38px 34px;display:flex;flex-direction:column;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:22px;"><path d="M3 12l3 3 6-6"/><path d="M11 15l3 3 7-7"/></svg>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1;margin-bottom:14px;">더블<span style="font-size:18px;font-weight:600;">체크</span></div>
+
+        <div style="font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">한국인 매니저의 상시 평가</div>
+
+        <p style="font-size:15px;color:#4A4A4A;line-height:1.7;margin:0;">한국인 매니저들이 원어민 선생님의 태도와 강의 역량을 수시로 평가·관리해 안전과 교육에 문제가 없는지 한 번 더 확인합니다.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ④ 원칙 03 — 캠프 위치보다 시설 (다크 · 센터피스) -->
+
+<section style="background:#1a1a1a;padding:100px 0;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">원칙 03</p>
+
+    <div data-split-header="" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:48px;flex-wrap:wrap;">
+
+      <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:-0.5px;margin:0;flex-shrink:0;">캠프 위치보다<br>중요한 <span style="color:#ab0000;">캠프 시설</span></h2>
+
+      <p class="dk-reveal-right dk-d1" style="font-size:18px;color:rgba(255,255,255,0.82);line-height:1.75;margin:0;max-width:340px;text-align:right;text-wrap:pretty;">외부 활동이 자유롭지 않은 아이들에게는<br>지역 치안보다 <b style="color:#fff;">시설의 안전</b>이<br>더 중요합니다.</p>
+
+    </div>
+
+    <p class="dk-reveal dk-d1" style="font-size:17px;color:rgba(255,255,255,0.7);line-height:1.85;margin:0 0 44px;max-width:820px;">아직도 임대한 리조트나 호텔에서 캠프를 진행하는 곳이 많습니다. 강의·식사·숙소 장소가 분리돼 동선이 길어지고, 시설 내 외부인 출입도 자유로워 아이들이 위험에 노출될 확률이 높아집니다. <b style="color:#fff;">닥공캠프는 대지 5,000평 규모의 닥공 전용 시설을 사용합니다.</b></p>
+
+    <!-- 원칙03 콘텐츠 — 시설 항공뷰 (풀폭) -->
+
+    <div class="dk-reveal-scale dk-d1" style="width:100%;border-radius:20px;overflow:hidden;background:#000;margin:0 0 52px;">
+
+      <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/facility_aerial.webp" alt="닥공 SDI 캠프 시설 항공뷰" loading="lazy" style="width:100%;height:auto;display:block;">
+
+    </div>
+
+
+
+    <!-- 시설 스펙 4 -->
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:48px;">
+
+      <div class="dk-sf-glass dk-reveal-scale dk-d1" style="padding:32px 30px;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px;"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/></svg>
+
+        <div style="font-size:18px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:10px;">닥공 전용, 독점 인프라</div>
+
+        <p style="font-size:14.5px;color:rgba(255,255,255,0.6);line-height:1.7;margin:0;">SDI는 닥공이 독점 계약한 현지 인프라. 캠프 기간이 아닐 때조차 외부인의 시설 사용을 허락하지 않습니다.</p>
+
+      </div>
+
+      <div class="dk-sf-glass dk-reveal-scale dk-d2" style="padding:32px 30px;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px;"><path d="M4 20V8l8-4 8 4v12"/><path d="M4 12h16M9 20v-4h6v4"/></svg>
+
+        <div style="font-size:18px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:10px;">담벼락 + 24시간 경비</div>
+
+        <p style="font-size:14.5px;color:rgba(255,255,255,0.6);line-height:1.7;margin:0;">높은 담벼락과 시큐리티 가드가 24시간 지켜, 누구도 함부로 출입할 수 없습니다. 개미 한 마리까지 파악합니다.</p>
+
+      </div>
+
+      <div class="dk-sf-glass dk-reveal-scale dk-d3" style="padding:32px 30px;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px;"><rect x="3" y="9" width="7" height="11"/><rect x="14" y="4" width="7" height="16"/><path d="M6 12v0M6 15v0M17 8v0M17 11v0M17 14v0"/></svg>
+
+        <div style="font-size:18px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:10px;">올인원 독립 빌리지</div>
+
+        <p style="font-size:14.5px;color:rgba(255,255,255,0.6);line-height:1.7;margin:0;">숙소·식당·강의실·운동장·수영장을 한 울타리 안에. 공부부터 액티비티까지 닥공 안에서 전부 해결합니다.</p>
+
+      </div>
+
+      <div class="dk-sf-glass dk-reveal-scale dk-d4" style="padding:32px 30px;">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px;"><circle cx="12" cy="9" r="5.5"/><path d="M12 6.5l1.1 1.9h2.1l-1.7 1.4.6 2.1-1.9-1.2-1.9 1.2.6-2.1-1.7-1.4h2.1z" fill="#ab0000" stroke="none"/><path d="M8.5 14l-1.5 6 5-2.5 5 2.5-1.5-6"/></svg>
+
+        <div style="font-size:18px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:10px;">정부 허가 TESDA · SSP</div>
+
+        <p style="font-size:14.5px;color:rgba(255,255,255,0.6);line-height:1.7;margin:0;">필리핀 교육부(TESDA) 인증 교육기관, SSP(어학연수 허가증) 발급 어학원. 무허가 시설의 여권 압수·억류 위험이 없습니다.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 수영장 물 빼기 — 인사이더 하이라이트 (20% 한 방) -->
+
+    <div class="dk-reveal-scale dk-d1" style="background:linear-gradient(120deg,#ab0000 0%,#7c0000 100%);border-radius:20px;padding:52px clamp(28px,5vw,56px);display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
+
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 15c1.5 0 1.5 1.2 3 1.2S9.5 15 11 15s1.5 1.2 3 1.2S17.5 15 19 15s1.5 1.2 3 1.2"/><path d="M3 19c1.5 0 1.5 1.2 3 1.2S9.5 19 11 19s1.5 1.2 3 1.2S17.5 19 19 19s1.5 1.2 3 1.2"/><path d="M7 12V5.5A2.5 2.5 0 0 1 9.5 3M12 12V5.5A2.5 2.5 0 0 1 14.5 3"/></svg>
+
+      <div style="flex:1;min-width:260px;">
+
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);letter-spacing:1.5px;margin-bottom:12px;">닥공은 이렇게까지 합니다</div>
+
+        <div style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:28px;font-weight:700;color:#fff;line-height:1.35;letter-spacing:-0.4px;margin-bottom:14px;">수영장에 물이 없다고요?</div>
+
+        <p style="font-size:16px;color:rgba(255,255,255,0.9);line-height:1.8;margin:0;">물이 아까워서가 아닙니다. 잠시 한눈팔면 사고로 이어지는 아이들이라, 사용하지 않을 때는 <b style="color:#fff;">물을 다 빼버립니다.</b> 사고는 빠른 대처도 중요하지만, 예방이 최우선이니까요.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 외부 활동 안내 -->
+
+    <div class="dk-reveal dk-d2" style="display:flex;gap:16px;align-items:flex-start;margin-top:36px;padding-top:34px;border-top:1px solid rgba(255,255,255,0.14);">
+
+      <svg style="flex-shrink:0;margin-top:2px;" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21c-4.5-4-7-7-7-11a7 7 0 0 1 14 0c0 4-2.5 7-7 11z"/></svg>
+
+      <p style="font-size:16px;color:rgba(255,255,255,0.72);line-height:1.8;margin:0;">아이들을 캠프 안에만 두지는 않습니다. 주 1회 외부 액티비티를 진행하되, 안전사고 노출이 큰 만큼 <b style="color:#fff;">4인 1조 전담 원어민 선생님과 전 과정 스텝이 반드시 동행</b>합니다.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ⑤ 원칙 04 — 대처가 빨라야 합니다 -->
+
+<section style="background:#F5F5F5;padding:96px 0;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">원칙 04</p>
+
+    <div data-split-header="" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;gap:48px;flex-wrap:wrap;">
+
+      <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#1a1a1a;line-height:1.25;letter-spacing:-0.5px;margin:0;flex-shrink:0;">대처가<br><span style="color:#ab0000;">빨라야</span> 합니다</h2>
+
+      <p class="dk-reveal-right dk-d1" style="font-size:18px;color:#555555;line-height:1.75;margin:0;max-width:320px;text-align:right;text-wrap:pretty;">위험은 언제나 불시에 찾아옵니다.<br>평소의 준비가 위급 상황의<br>빠른 판단을 만듭니다.</p>
+
+    </div>
+
+    <!-- 원칙04 상단 — 실제 고객 카톡 3장 (높이 통일 + 가로 슬라이드) -->
+
+    <div class="dk-kstrip dk-reveal-scale" style="margin-bottom:44px;">
+
+      <div style="display:flex;gap:14px;width:max-content;margin:0 auto;">
+
+        <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/kakao1.webp" alt="닥공캠프 학부모와 나눈 실제 카톡 대화" loading="lazy" draggable="false" style="height:520px;width:auto;flex:0 0 auto;display:block;border-radius:12px;border:1px solid #E3E3E3;background:#fff;">
+
+        <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/kakao2.webp" alt="닥공캠프 학부모와 나눈 실제 카톡 대화" loading="lazy" draggable="false" style="height:520px;width:auto;flex:0 0 auto;display:block;border-radius:12px;border:1px solid #E3E3E3;background:#fff;">
+
+        <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/kakao3.webp" alt="닥공캠프 학부모와 나눈 실제 카톡 대화" loading="lazy" draggable="false" style="height:520px;width:auto;flex:0 0 auto;display:block;border-radius:12px;border:1px solid #E3E3E3;background:#fff;">
+
+      </div>
+
+    </div>
+
+    <!-- 200만원 후송 풀블리드 인용 (Peak build) -->
+
+    <div class="dk-reveal-scale dk-d1" style="background:#1a1a1a;border-radius:20px;padding:56px clamp(28px,5vw,60px);margin-bottom:48px;">
+
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="#ab0000" style="margin-bottom:26px;"><path d="M9.5 5C6 6 4 9 4 13v6h6v-8H7.5c0-2.5 1-4 3-4.5L9.5 5zm10 0c-3.5 1-5.5 4-5.5 8v6h6v-8h-2.5c0-2.5 1-4 3-4.5L19.5 5z"/></svg>
+
+      <p data-quote="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:27px;font-weight:700;color:#fff;line-height:1.55;letter-spacing:-0.3px;margin:0 0 26px;">한번은 캠프 때 아이가 많이 아팠습니다. 큰 병원 진료가 필요해 보여 가장 빠른 비행기에 태워 한국으로 보냈고, 아이는 무사히 회복했습니다. 캠프 비용은 <span style="color:#ab0000;">전액 환불</span>, 티켓값만 200만 원이 넘었습니다.</p>
+
+      <p style="font-size:16px;color:rgba(255,255,255,0.62);line-height:1.8;margin:0 0 20px;">"부모님께 알려야 하나, 비행깃값이 얼만데… 내일 다시 병원을 가볼까?" 이런 고민과 판단은 직원이 할 수도, 해서도 안 됩니다. 문제가 생기면 빠르게 행동하고 부모님께 먼저 알리는 것이 아이를 지키는 일입니다.</p>
+
+      <div style="display:flex;align-items:center;gap:12px;">
+
+        <div style="width:28px;height:2px;background:#ab0000;"></div>
+
+        <span style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.8);">사람이 우선이지, 돈 얘기가 아닙니다</span>
+
+      </div>
+
+    </div>
+
+    <!-- 만약을 대비하는 것들 -->
+
+    <p class="dk-reveal dk-d1" style="font-size:14px;font-weight:700;color:#999;letter-spacing:1px;margin:0 0 18px;">만약을 대비하는 것들</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:36px;">
+
+      <div class="dk-sf-card dk-reveal-scale dk-d1" style="background:#fff;border-radius:16px;padding:30px 28px;">
+
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M12 11v5M9.5 13.5h5"/></svg>
+
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px;">복용약 개별 관리</div>
+
+        <p style="font-size:14px;color:#4A4A4A;line-height:1.65;margin:0;">매일 챙겨야 하는 약이 있는 아이는 담당자가 개별로 맡아 빠짐없이 관리합니다.</p>
+
+      </div>
+
+      <div class="dk-sf-card dk-reveal-scale dk-d2" style="background:#fff;border-radius:16px;padding:30px 28px;">
+
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M4 21V9l8-5 8 5v12"/><path d="M12 9v6M9 12h6"/><path d="M9 21v-4h6v4"/></svg>
+
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px;">연계 한인병원</div>
+
+        <p style="font-size:14px;color:#4A4A4A;line-height:1.65;margin:0;">차량 5분 거리 한인타운에 한인의사가 상주하는 닥공 연계 병원이 있습니다.</p>
+
+      </div>
+
+      <div class="dk-sf-card dk-reveal-scale dk-d3" style="background:#fff;border-radius:16px;padding:30px 28px;">
+
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px;">아침 건강 체크</div>
+
+        <p style="font-size:14px;color:#4A4A4A;line-height:1.65;margin:0;">매일 아침 건강 상태를 확인해 아픈 아이는 즉시 진료받게 합니다.</p>
+
+      </div>
+
+      <div class="dk-sf-card dk-reveal-scale dk-d4" style="background:#fff;border-radius:16px;padding:30px 28px;">
+
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#ab0000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M12 21c5-3.5 8-7 8-11a4 4 0 0 0-8-1 4 4 0 0 0-8 1c0 4 3 7.5 8 11z"/></svg>
+
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px;">응급 대비 훈련</div>
+
+        <p style="font-size:14px;color:#4A4A4A;line-height:1.65;margin:0;">선생님 응급구조 필수 훈련 이수, 국가 소방본부(BFP) 시찰 진행.</p>
+
+      </div>
+
+    </div>
+
+    <p class="dk-reveal dk-d1" style="font-size:14px;font-weight:700;color:#999;letter-spacing:1px;margin:8px 0 18px;">안전 인증 · 점검 기록</p>
+
+    <div class="dk-reveal-scale" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+
+      <div class="dk-actcard">
+
+        <div class="dk-actmedia" style="position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#e6e6e6;">
+
+          <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/safety_first_aid.webp" alt="선생님 응급구조 교육" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:38px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,0.74),rgba(0,0,0,0));"><div style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.2px;">응급구조 교육</div></div>
+
+        </div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;margin-top:12px;">선생님 필수 응급처치 훈련</div>
+
+      </div>
+
+      <div class="dk-actcard">
+
+        <div class="dk-actmedia" style="position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#e6e6e6;">
+
+          <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/safety_cert.webp" alt="관리자 응급구조 자격증" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:38px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,0.74),rgba(0,0,0,0));"><div style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.2px;">응급구조 자격증</div></div>
+
+        </div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;margin-top:12px;">관리자·헤드티처 자격 보유</div>
+
+      </div>
+
+      <div class="dk-actcard">
+
+        <div class="dk-actmedia" style="position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#e6e6e6;">
+
+          <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/safety_cctv.webp" alt="캠프 CCTV 관제" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:38px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,0.74),rgba(0,0,0,0));"><div style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.2px;">CCTV 관제</div></div>
+
+        </div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;margin-top:12px;">캠프 전역 24시간 감시</div>
+
+      </div>
+
+      <div class="dk-actcard">
+
+        <div class="dk-actmedia" style="position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#e6e6e6;">
+
+          <img src="https://cdn.jsdelivr.net/gh/YoungKim3848/dakgong@main/content/safety/safety_fire1.webp" alt="필리핀 소방청 시설 점검" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:38px 16px 14px;background:linear-gradient(to top,rgba(0,0,0,0.74),rgba(0,0,0,0));"><div style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.2px;">소방청 시설 점검</div></div>
+
+        </div>
+
+        <div style="font-size:14px;color:#777;line-height:1.6;margin-top:12px;">필리핀 국가 소방청 안전 확인</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ⑥ 마무리 — 4원칙 리캡 (다크 · Peak-End) -->
+
+<section style="background:#1a1a1a;padding:104px 0 110px;">
+
+  <div style="max-width:1280px;margin:0 auto;padding:0;">
+
+    <p class="dk-reveal" style="font-size:15px;font-weight:400;color:#ab0000;margin:0 0 12px;">20년 무사고의 원칙</p>
+
+    <h2 class="dk-reveal-left" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:36px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:-0.5px;margin:0 0 52px;">닥공이 지켜온 <span style="color:#ab0000;">네 가지</span></h2>
+
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:64px;">
+
+      <!-- 01 -->
+
+      <div data-recap-row="" class="dk-reveal dk-d1" style="display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:26px 0;border-top:1px solid rgba(255,255,255,0.14);">
+
+        <div data-recap-num="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:52px;font-weight:700;color:#ab0000;line-height:1;min-width:78px;">01</div>
+
+        <div style="font-size:22px;font-weight:700;color:#fff;line-height:1.4;">누구도 믿지 않는다</div>
+
+      </div>
+
+      <!-- 02 -->
+
+      <div data-recap-row="" class="dk-reveal dk-d2" style="display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:26px 0;border-top:1px solid rgba(255,255,255,0.14);">
+
+        <div data-recap-num="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:52px;font-weight:700;color:#ab0000;line-height:1;min-width:78px;">02</div>
+
+        <div style="font-size:22px;font-weight:700;color:#fff;line-height:1.4;">아무나 하지 않는다</div>
+
+      </div>
+
+      <!-- 03 -->
+
+      <div data-recap-row="" class="dk-reveal dk-d3" style="display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:26px 0;border-top:1px solid rgba(255,255,255,0.14);">
+
+        <div data-recap-num="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:52px;font-weight:700;color:#ab0000;line-height:1;min-width:78px;">03</div>
+
+        <div style="font-size:22px;font-weight:700;color:#fff;line-height:1.4;">위치보다 시설이 중요하다</div>
+
+      </div>
+
+      <!-- 04 -->
+
+      <div data-recap-row="" class="dk-reveal dk-d4" style="display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:26px 0;border-top:1px solid rgba(255,255,255,0.14);border-bottom:1px solid rgba(255,255,255,0.14);">
+
+        <div data-recap-num="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:52px;font-weight:700;color:#ab0000;line-height:1;min-width:78px;">04</div>
+
+        <div style="font-size:22px;font-weight:700;color:#fff;line-height:1.4;">대처가 빨라야 한다</div>
+
+      </div>
+
+    </div>
+
+    <div class="dk-reveal" style="text-align:center;">
+
+      <div style="width:40px;height:3px;background:#ab0000;margin:0 auto 32px;"></div>
+
+      <p data-closing="" style="font-family:'Paperlogy','Pretendard Variable','Pretendard',sans-serif;font-size:30px;font-weight:700;color:#fff;line-height:1.5;letter-spacing:-0.4px;margin:0;">소중한 우리 아이,<br><span style="color:#ab0000;">어떤 캠프에 맡기시겠습니까?</span></p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<script>
+
+(function(){
+
+  var root=document.querySelector('.dk-core');
+
+  if(!root)return;
+
+  root.classList.add('dk-js');
+
+  var io=new IntersectionObserver(function(entries){
+
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('dk-in');io.unobserve(e.target);}});
+
+  },{threshold:0.18});
+
+  root.querySelectorAll('.dk-reveal,.dk-reveal-left,.dk-reveal-right,.dk-reveal-scale').forEach(function(el){io.observe(el);});
+
+  // 카톡 스트립 마우스 드래그 스크롤 (터치/트랙패드는 네이티브)
+
+  var strip=root.querySelector('.dk-kstrip');
+
+  if(strip){var down=false,sx=0,sl=0;
+
+    strip.addEventListener('mousedown',function(e){down=true;strip.classList.add('dragging');sx=e.pageX;sl=strip.scrollLeft;});
+
+    window.addEventListener('mouseup',function(){down=false;strip.classList.remove('dragging');});
+
+    strip.addEventListener('mouseleave',function(){down=false;strip.classList.remove('dragging');});
+
+    strip.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();strip.scrollLeft=sl-(e.pageX-sx);});
+
+  }
+
+})();
+
+</script>
+
+</div>
+
